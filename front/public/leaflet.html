@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+  </head>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+  </style>
+
+  <body onload="initialize()">
+    <div id="map" style="width: 100%; height: 100%"></div>
+  </body>
+</html>
+<script type="text/javascript">
+  function initialize() {
+    var map = L.map("map").setView([48.856614, 2.3522219], 13); // LIGNE 18
+
+    var osmLayer = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+      // LIGNE 20
+      attribution: "© OpenStreetMap contributors",
+      maxZoom: 19,
+    });
+    L.marker([48.881399, 2.357438]).addTo(map).bindTooltip("Gare du Nord", {
+      permanent: true,
+      direction: "top",
+    });
+
+    var customIcon = L.icon({
+      iconUrl: "/Users/rafika/Downloads/icon-marker.png",
+      //shadowUrl: 'icon-shadow.png',
+      iconSize: [64, 64], // taille de l'icone
+      //shadowSize:   [50, 64], // taille de l'ombre
+      iconAnchor: [32, 64], // point de l'icone qui correspondra à la position du marker
+      //shadowAnchor: [32, 64],  // idem pour l'ombre
+      popupAnchor: [-3, -76], // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
+    });
+
+    L.marker([48.872112, 2.3448973], { icon: customIcon }).addTo(map);
+    L.marker([48.85341, 2.3488]).addTo(map).bindTooltip("Universite de Paris", {
+      permanent: true,
+      direction: "top",
+    });
+    map.addLayer(osmLayer);
+  }
+</script>
