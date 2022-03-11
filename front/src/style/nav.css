@@ -1,0 +1,27 @@
+nav ul {
+  position: relative;
+  background-color: rgba(126, 79, 136, 0.8);
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px 5px 10px 5px;
+  border-style: dotted;
+  border-width: 3px;
+  border-color: rgb(13, 3, 14);
+  border-radius: 10px;
+  list-style-type: none;
+}
+nav li {
+  font-size: 20px;
+  display: inline;
+  margin: 30px;
+  padding: 10px 5px 10px 5px;
+  border-width: 0px;
+}
+#link {
+  text-decoration: none;
+  color: black;
+}
+
+#link:hover {
+  background: linear-gradient(rgb(255, 255, 255), rgb(126, 79, 136));
+}

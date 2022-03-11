@@ -1,12 +1,9 @@
 import Formulaire from "./Formulaire";
-import Nav from "./Nav";
+import Nav from "./Navigateur";
 import Home from "./Home";
 import Header from "./Header";
-import Carte from "./Carte";
-
-import ReactDOM from "react-dom";
+import Maps from "./Maps";
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 function App() {
   return (
@@ -16,7 +13,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/formulaire" element={<Formulaire />} />
-        <Route path="/carte" element={<Carte />} />
+        <Route path="/carte" element={<Maps />} />
       </Routes>
     </div>
   );
