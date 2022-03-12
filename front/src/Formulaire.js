@@ -10,7 +10,7 @@ function Formulaire() {
   const [dispo, setDispo] = useState("");
   const data = { nom: nom, adresse: adresse, dispo: dispo };
 
-  useEffect(() => {
+  /*useEffect(() => {
     axios
       .get("http://localhost:3000/formulaire", { ...data })
       .then((res) => console.log(res.data.message));
@@ -18,7 +18,7 @@ function Formulaire() {
   axios
     .post("http://localhost:3000/formulaire", { ...data })
     .then((res) => console.log(res.data.message));
-
+*/
   function affiche() {
     alert(
       "Nom : " + nom + " Adresse : " + adresse + " Disponibilité : " + dispo
