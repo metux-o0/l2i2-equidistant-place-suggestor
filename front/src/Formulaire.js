@@ -2,39 +2,6 @@ import "./style/formulaire.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-var nbform = 1;
-
-/*function init()
-  {
-	  var divs = document.querySelectorAll("div");
-	  for (var i = 0; i < divs.length-1; i++)
-		  divs[i].addEventListener("change",enregistre , false);
-
-	// Lance le calcul du total.
-	// (Les sommes seront positinnées à zéro.)
-  }
-
-  function enregistre(){
-    setAdresse(adresse.push(e))
-  }
-
-function getTd(ligne) {
-  var result =
-    '<div id="' +
-    ligne +
-    '"><label>Nom :</label><input type="text" onChange={(e) => {setNom(e.target.value);}}/><label>Adresse :</label><input type="text" onChange={(e) => {setAdresse(e.target.value);}}/><br />' +
-    '<label>Disponibilité :</label><select name="jour"multiple={true} size="7" onChange={(e) => {setDispo(e.target.value);}}><option value="Lundi">Lundi</option><option value="Mardi">Mardi</option><option value="Mercredi">Mercredi</option><option value="Jeudi">Jeudi</option><option value="Vendredi">Vendredi</option><option value="Samedi">Samedi</option><option value="Dimanche">Dimanche</option></select></div>';
-  return result;
-}
-
-function ajouterform() {
-  var nouvelem = document.createElement('form');
-  nouvelem.innerHTML = getTd(nbform++);
-
-  var dernelem = document.getElementsByTagName('form');
-  var parent = dernelem[dernelem.length - 1];
-  parent.parentNode.insertBefore(nouvelem, parent);
-}*/
 var tab1 = [];
 
 function Formulaire() {
@@ -90,77 +57,64 @@ function Formulaire() {
         <br />
         <label id="case">Disponibilité :</label>
         <br />
-        <input
-          type="checkbox"
-          id="case"
-          name="lundi"
-          onClick={(e) => {
-            dispo[0].lundi++;
-          }}
-        />
-        <label>Lundi</label>
+        <input type="checkbox" id="case1" name="lundi" value="lundi" />
+        <label for="lundi">Lundi</label>
         <br />
-        <input
-          type="checkbox"
-          id="case"
-          name="mardi"
-          onChange={(e) => {
-            dispo[0].mardi++;
-          }}
-        />
-        <label>Mardi</label>
+        <input type="checkbox" id="case2" name="mardi" value="mardi" />
+        <label for="mardi">Mardi</label>
         <br />
-        <input
-          type="checkbox"
-          id="case"
-          name="mercredi"
-          onChange={(e) => {
-            dispo[0].mercredi++;
-          }}
-        />
-        <label>Mercredi</label>
+        <input type="checkbox" id="case3" name="mercredi" value="mercredi" />
+        <label for="mercredi">Mercredi</label>
         <br />
-        <input
-          type="checkbox"
-          id="case"
-          name="jeudi"
-          onChange={(e) => {
-            dispo[0].jeudi++;
-          }}
-        />
-        <label>Jeudi</label>
+        <input type="checkbox" id="case4" name="jeudi" value="jeudi" />
+        <label for="jeudi">Jeudi</label>
         <br />
-        <input
-          type="checkbox"
-          id="case"
-          name="vendredi"
-          onChange={(e) => {
-            dispo[0].vendredi++;
-          }}
-        />
-        <label>Vendredi</label>
+        <input type="checkbox" id="case5" name="vendredi" value="vendredi" />
+        <label for="vendredi">Vendredi</label>
         <br />
-        <input
-          type="checkbox"
-          id="case"
-          name="samedi"
-          onChange={(e) => {
-            dispo[0].samedi++;
-          }}
-        />
-        <label>Samedi</label>
+        <input type="checkbox" id="case6" name="samedi" value="samedi" />
+        <label for="samedi">Samedi</label>
         <br />
-        <input
-          type="checkbox"
-          id="case7"
-          name="dimanche"
-          onChange={(e) => {
-            dispo[0].dimanche++;
-          }}
-        />
-        <label>Dimanche</label>
+        <input type="checkbox" id="case7" name="dimanche" value="dimanche" />
+        <label for="dimanche">Dimanche</label>
       </form>
-      <input type="submit" value="Envoyer" id="boutton" onClick={affiche} />
+      <input
+        type="submit"
+        value="Envoyer"
+        id="boutton"
+        onClick={() => {
+          tab1.push(data);
+          console.table(tab1);
+          console.table(dispo);
+          document.getElementById("name").value = "";
+          document.getElementById("adr").value = "";
+          var semaine = document.querySelectorAll('input[type="checkbox"]');
+          if (semaine[0].checked == true) {
+            dispo[0].lundi++;
+          }
+          if (semaine[1].checked == true) {
+            dispo[0].mardi++;
+          }
+          if (semaine[2].checked == true) {
+            dispo[0].mercredi++;
+          }
+          if (semaine[3].checked == true) {
+            dispo[0].jeudi++;
+          }
+          if (semaine[4].checked == true) {
+            dispo[0].vendredi++;
+          }
+          if (semaine[5].checked == true) {
+            dispo[0].samedi++;
+          }
+          if (semaine[6].checked == true) {
+            dispo[0].dimanche++;
+          }
+          for (var i = 0; i < semaine.length; i++) {
+            semaine[i].checked = false;
+          }
+        }}
+      />
       <input
         type="reset"
         value="Ajouter"
@@ -171,6 +125,31 @@ function Formulaire() {
           console.table(dispo);
           document.getElementById("name").value = "";
           document.getElementById("adr").value = "";
+          var semaine = document.querySelectorAll('input[type="checkbox"]');
+          if (semaine[0].checked == true) {
+            dispo[0].lundi++;
+          }
+          if (semaine[1].checked == true) {
+            dispo[0].mardi++;
+          }
+          if (semaine[2].checked == true) {
+            dispo[0].mercredi++;
+          }
+          if (semaine[3].checked == true) {
+            dispo[0].jeudi++;
+          }
+          if (semaine[4].checked == true) {
+            dispo[0].vendredi++;
+          }
+          if (semaine[5].checked == true) {
+            dispo[0].samedi++;
+          }
+          if (semaine[6].checked == true) {
+            dispo[0].dimanche++;
+          }
+          for (var i = 0; i < semaine.length; i++) {
+            semaine[i].checked = false;
+          }
         }}
       />
     </div>
