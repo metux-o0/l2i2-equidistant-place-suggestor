@@ -1,7 +1,6 @@
 import './style/home.css';
 import {
   Marker,
-  Popup,
   MapContainer,
   TileLayer,
 } from 'react-leaflet';
