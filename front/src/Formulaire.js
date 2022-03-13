@@ -116,7 +116,6 @@ function Formulaire() {
         onClick={() => {
           tab1.push(data);
           console.table(tab1);
-          console.table(dispo);
           document.getElementById("name").value = "";
           document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
@@ -141,6 +140,7 @@ function Formulaire() {
           if (semaine[6].checked == true) {
             dispo[0].dimanche++;
           }
+          console.table(dispo);
           for (var i = 0; i < semaine.length; i++) {
             semaine[i].checked = false;
           }
