@@ -29,12 +29,6 @@ function Formulaire() {
     .post("http://localhost:3000/formulaire", { ...data })
     .then((res) => console.log(res.data.message));
 
-  function affiche() {
-    alert(
-      "Nom : " + nom + " Adresse : " + adresse + " Disponibilité : " + dispo
-    );
-  }
-
   return (
     <div id="formulaire" /*onLoad={init}*/>
       <form action="/log" method="post">
