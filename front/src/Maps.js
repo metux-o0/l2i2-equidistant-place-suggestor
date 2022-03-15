@@ -1,26 +1,35 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import "./style/maps.css";
-import Formulaire from "./Formulaire";
+import React, { Component } from "react";
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 
-const cle=process.env.API_KEY;
+const mapStyles = {
+  height: "400px",
+  width: "600px",
+  margintop: "0.6em",
+};
 
-const position = [48.86380957985594, 2.3443822975053807];
-
-function Maps() {
-  return (
-    <div>
-      <Formulaire />
-      <MapContainer center={position} zoom={11}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position}>
-          <Popup>Vous êtes ici</Popup>
-        </Marker>
-      </MapContainer>
-    </div>
-  );
+export class MapContainer extends Component {
+  render() {
+    return (
+      <center>
+        <Map
+          google={this.props.google}
+          zoom={16}
+          style={mapStyles}
+          initialCenter={{
+            lat: 48.854270935058594,
+            lng: 2.3303446769714355,
+          }}
+        >
+          <Marker
+            onClick={this.onMarkerClick}
+            name={"45 rue des Saint Pères, 75006 Paris"}
+          />
+        </Map>
+      </center>
+    );
+  }
 }
 
-export default Maps;
+export default GoogleApiWrapper({
+  apiKey: "KEY",
+})(MapContainer);
