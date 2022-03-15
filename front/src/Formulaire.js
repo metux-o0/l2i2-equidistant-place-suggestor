@@ -78,8 +78,6 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          console.table(tab1);
-          console.table(dispo);
           document.getElementById("name").value = "";
           document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
@@ -107,6 +105,8 @@ function Formulaire() {
           for (var i = 0; i < semaine.length; i++) {
             semaine[i].checked = false;
           }
+          console.table(tab1);
+          console.table(dispo);
         }}
       />
       <input
@@ -115,7 +115,6 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          console.table(tab1);
           document.getElementById("name").value = "";
           document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
@@ -144,6 +143,8 @@ function Formulaire() {
           for (var i = 0; i < semaine.length; i++) {
             semaine[i].checked = false;
           }
+          console.table(tab1);
+          console.table(dispo);
         }}
       />
     </div>
