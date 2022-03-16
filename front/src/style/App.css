@@ -1,9 +1,9 @@
-.App{
-    text-align: center;
-    color:rgb(194, 85, 85);
-    font-family: Verdana;
-  }
-  button{
-    color:rgb(42, 165, 42);
-  }
-  
+.App {
+  text-align: center;
+  color: rgb(194, 85, 85);
+  font-family: Verdana;
+  height: 100vh;
+}
+button {
+  color: rgb(42, 165, 42);
+}

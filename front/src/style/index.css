@@ -6,8 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("../../public/triangle_tricolore.jpg");
-  background-size: 1360px 790px;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  box-sizing: border-box;
 }
 
 code {
