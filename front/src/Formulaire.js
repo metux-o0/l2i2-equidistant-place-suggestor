@@ -2,11 +2,17 @@ import "./style/formulaire.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-var tab1 = [];
+var tab1 = [
+  { nom: 'Blandine', adresse: '12 residence de paris' },
+  { nom: 'Université', adresse: '45 rue des Saints-Pères' },
+  { nom: '', adresse: '' },
+  { nom: '', adresse: '' },
+  { nom: '', adresse: '' },
+];
 
 function Formulaire() {
-  const [nom, setNom] = useState("");
-  const [adresse, setAdresse] = useState("");
+  const [nom, setNom] = useState('');
+  const [adresse, setAdresse] = useState('');
   const [dispo, setDispo] = useState([
     {
       lundi: 0,
@@ -18,21 +24,20 @@ function Formulaire() {
       dimanche: 0,
     },
   ]);
-  const data = { nom: nom, adresse: adresse, dispo: dispo };
 
+  const data = { nom: nom, adresse: adresse, dispo: dispo };
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/formulaire", { ...data })
-      .then((res) => console.log(res.data.message));
+    axios.post('http://localhost:3000/formulaire', { tab1}).then((res) => {
+      console.log(res);
+    });
   }, []);
-  axios
-    .post("http://localhost:3000/formulaire", { ...data })
-    .then((res) => console.log(res.data.message));
 
   return (
-    <div id="formulaire" /*onLoad={init}*/>
-      <form action="/log" method="post">
-        <label id="case">Nom :</label>
+    <div id="formulaire">
+      <form>
+        <label id="case" htmlform="name">
+          Nom :
+        </label>
         <input
           type="text"
           id="name"
@@ -40,7 +45,9 @@ function Formulaire() {
             setNom(e.target.value);
           }}
         />
-        <label id="case">Adresse :</label>
+        <label id="case" htmlform="adr">
+          Adresse :
+        </label>
         <input
           type="text"
           id="adr"
@@ -52,25 +59,25 @@ function Formulaire() {
         <label id="case">Disponibilité :</label>
         <br />
         <input type="checkbox" id="case1" name="lundi" value="lundi" />
-        <label for="lundi">Lundi</label>
+        <label htmlform="lundi">Lundi</label>
         <br />
         <input type="checkbox" id="case2" name="mardi" value="mardi" />
-        <label for="mardi">Mardi</label>
+        <label htmlform="mardi">Mardi</label>
         <br />
         <input type="checkbox" id="case3" name="mercredi" value="mercredi" />
-        <label for="mercredi">Mercredi</label>
+        <label htmlform="mercredi">Mercredi</label>
         <br />
         <input type="checkbox" id="case4" name="jeudi" value="jeudi" />
-        <label for="jeudi">Jeudi</label>
+        <label htmlform="jeudi">Jeudi</label>
         <br />
         <input type="checkbox" id="case5" name="vendredi" value="vendredi" />
-        <label for="vendredi">Vendredi</label>
+        <label htmlform="vendredi">Vendredi</label>
         <br />
         <input type="checkbox" id="case6" name="samedi" value="samedi" />
-        <label for="samedi">Samedi</label>
+        <label htmlform="samedi">Samedi</label>
         <br />
         <input type="checkbox" id="case7" name="dimanche" value="dimanche" />
-        <label for="dimanche">Dimanche</label>
+        <label htmlform="dimanche">Dimanche</label>
       </form>
       <input
         type="submit"
@@ -78,35 +85,35 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById("name").value = "";
-          document.getElementById("adr").value = "";
+          document.getElementById('name').value = '';
+          document.getElementById('adr').value = '';
           var semaine = document.querySelectorAll('input[type="checkbox"]');
-          if (semaine[0].checked == true) {
+          if (semaine[0].checked === true) {
             dispo[0].lundi++;
           }
-          if (semaine[1].checked == true) {
+          if (semaine[1].checked === true) {
             dispo[0].mardi++;
           }
-          if (semaine[2].checked == true) {
+          if (semaine[2].checked === true) {
             dispo[0].mercredi++;
           }
-          if (semaine[3].checked == true) {
+          if (semaine[3].checked === true) {
             dispo[0].jeudi++;
           }
-          if (semaine[4].checked == true) {
+          if (semaine[4].checked === true) {
             dispo[0].vendredi++;
           }
-          if (semaine[5].checked == true) {
+          if (semaine[5].checked === true) {
             dispo[0].samedi++;
           }
-          if (semaine[6].checked == true) {
+          if (semaine[6].checked === true) {
             dispo[0].dimanche++;
           }
           for (var i = 0; i < semaine.length; i++) {
             semaine[i].checked = false;
           }
-          console.table(tab1);
           console.table(dispo);
+          console.table(tab1);
         }}
       />
       <input
@@ -115,36 +122,35 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById("name").value = "";
-          document.getElementById("adr").value = "";
+          document.getElementById('name').value = '';
+          document.getElementById('adr').value = '';
           var semaine = document.querySelectorAll('input[type="checkbox"]');
-          if (semaine[0].checked == true) {
+          if (semaine[0].checked === true) {
             dispo[0].lundi++;
           }
-          if (semaine[1].checked == true) {
+          if (semaine[1].checked === true) {
             dispo[0].mardi++;
           }
-          if (semaine[2].checked == true) {
+          if (semaine[2].checked === true) {
             dispo[0].mercredi++;
           }
-          if (semaine[3].checked == true) {
+          if (semaine[3].checked === true) {
             dispo[0].jeudi++;
           }
-          if (semaine[4].checked == true) {
+          if (semaine[4].checked === true) {
             dispo[0].vendredi++;
           }
-          if (semaine[5].checked == true) {
+          if (semaine[5].checked === true) {
             dispo[0].samedi++;
           }
-          if (semaine[6].checked == true) {
+          if (semaine[6].checked === true) {
             dispo[0].dimanche++;
           }
-          console.table(dispo);
           for (var i = 0; i < semaine.length; i++) {
             semaine[i].checked = false;
           }
-          console.table(tab1);
           console.table(dispo);
+          console.table(tab1);
         }}
       />
     </div>

@@ -1,16 +1,18 @@
 var express = require("express");
 var path = require("path");
 var app = express();
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../front/public")));
 
-app.get("/", (req, res) => {
-  console.log("Connecter au localhost:3000 !!");
-});
-app.get("/formulaire", (req, res) => {
-  res.json(req.body);
+app.post("/formulaire", (req, res) => {
+  const donnee = req.body;
+  console.log(req.body);
 });
 
 app.get("/carte", (req, res) => {});
