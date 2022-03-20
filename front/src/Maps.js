@@ -1,4 +1,4 @@
-import './style/carte.css';
+import './style/maps.css';
 import Formulaire from './Formulaire';
 import { useEffect, useState } from 'react';
 import React from 'react';
