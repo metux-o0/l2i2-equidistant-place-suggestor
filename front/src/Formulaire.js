@@ -122,7 +122,6 @@ function Formulaire() {
           console.table(dispo);
           console.table(tab1);
           envoieData();
-          ajoutMarker(48.86380957985594, 2.3443822975053807);
         }}
       />
       <input
