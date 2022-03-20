@@ -4,12 +4,14 @@ import Home from "./Home";
 import Header from "./Header";
 import Maps from "./Maps";
 import { Route, Routes } from "react-router-dom";
+import Autocomplete from "./Autocomplete";
 
 function App() {
   return (
     <div>
       <Header />
       <Nav></Nav>
+      <Autocomplete onchange={() => null} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/formulaire" element={<Maps />} />

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import PlacesAutocomplete, {
+  geocodeByAdress,
+  getLating,
+} from "react-places-autocomplete";
 const mapStyles = {
   height: "400px",
   width: "600px",
   margintop: "0.6em",
 };
-
 export class MapContainer extends Component {
   render() {
     return (
@@ -29,7 +31,6 @@ export class MapContainer extends Component {
     );
   }
 }
-
 export default GoogleApiWrapper({
-  apiKey: "KEY",
+  apiKey: process.env.GOOGLE_API_KEY,
 })(MapContainer);
