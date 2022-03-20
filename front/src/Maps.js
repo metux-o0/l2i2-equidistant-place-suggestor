@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-import './style/maps.css';
-import Formulaire from './Formulaire';
-import { useEffect, useState } from 'react';
-import React from 'react';
-import axios from 'axios';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-=======
 import "./style/maps.css";
 import Formulaire from "./Formulaire";
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
->>>>>>> 3478e8f (réglages erreur)
 
 const containerStyle = {
   width: "600px",
