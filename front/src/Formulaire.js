@@ -1,18 +1,20 @@
-import "./style/formulaire.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import './style/formulaire.css';
+import Auto from './Auto';
+import { useEffect, useState } from 'react';
+import Autocomplete from 'react-google-autocomplete';
+import axios from 'axios';
 
 var tab1 = [
-  { nom: "Blandine", adresse: "12 residence de paris" },
-  { nom: "Université", adresse: "45 rue des Saints-Pères" },
-  { nom: "", adresse: "" },
-  { nom: "", adresse: "" },
-  { nom: "", adresse: "" },
+  { nom: 'Blandine', adresse: '12 residence de paris' },
+  { nom: 'Université', adresse: '45 rue des Saints-Pères' },
+  { nom: '', adresse: '' },
+  { nom: '', adresse: '' },
+  { nom: '', adresse: '' },
 ];
 
 function Formulaire() {
-  const [nom, setNom] = useState("");
-  const [adresse, setAdresse] = useState("");
+  const [nom, setNom] = useState('');
+  const [adresse, setAdresse] = useState('');
   const [dispo, setDispo] = useState([
     {
       lundi: 0,
@@ -27,9 +29,9 @@ function Formulaire() {
 
   const data = { nom: nom, adresse: adresse, dispo: dispo };
 
-  function afficheData() {
-    axios.post("http://localhost:3000/formulaire", { tab1 }).then((res) => {
-      console.log(res);
+  function envoieData() {
+    axios.post('http://localhost:3000/formulaire', { tab1 }).then((res) => {
+      console.log(res.data);
     });
   }
 
@@ -49,11 +51,15 @@ function Formulaire() {
         <label id="case" htmlform="adr">
           Adresse :
         </label>
-        <input
-          type="text"
+        <Autocomplete
           id="adr"
-          onChange={(e) => {
-            setAdresse(e.target.value);
+          apiKey={process.env.GOOGLE_API_KEY}
+          onPlaceSelected={(place, inputRef, autocomplete) => {
+            console.log(place.geometry.location);
+            setAdresse(place.formatted_address);
+          }}
+          options={{
+            componentRestrictions: { country: 'fr' },
           }}
         />
         <br />
@@ -86,8 +92,8 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById("name").value = "";
-          document.getElementById("adr").value = "";
+          document.getElementById('name').value = '';
+          document.getElementById('adr').value = '';
           var semaine = document.querySelectorAll('input[type="checkbox"]');
           if (semaine[0].checked === true) {
             dispo[0].lundi++;
@@ -115,7 +121,8 @@ function Formulaire() {
           }
           console.table(dispo);
           console.table(tab1);
-          afficheData();
+          envoieData();
+          ajoutMarker(48.86380957985594, 2.3443822975053807);
         }}
       />
       <input
@@ -124,8 +131,8 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById("name").value = "";
-          document.getElementById("adr").value = "";
+          document.getElementById('name').value = '';
+          document.getElementById('adr').value = '';
           var semaine = document.querySelectorAll('input[type="checkbox"]');
           if (semaine[0].checked === true) {
             dispo[0].lundi++;

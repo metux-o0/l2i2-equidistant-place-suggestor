@@ -1,26 +1,42 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import "./style/maps.css";
-import Formulaire from "./Formulaire";
+import './style/carte.css';
+import Formulaire from './Formulaire';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import axios from 'axios';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
-const cle=process.env.API_KEY;
-
-const position = [48.86380957985594, 2.3443822975053807];
-
+const containerStyle = {
+  width: '600px',
+  height: '500px',
+};
 function Maps() {
-  return (
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.GOOGLE_API_KEY,
+  });
+
+  const [map, setMap] = React.useState(null);
+
+  return isLoaded ? (
     <div>
       <Formulaire />
-      <MapContainer center={position} zoom={11}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      <GoogleMap
+        id="carte"
+        mapContainerStyle={containerStyle}
+        center={{ lat: 48.86380957985594, lng: 2.3443822975053807 }}
+        zoom={11}
+        onClick={(e) => {
+          console.log(e);
+        }}
+      >
+        <Marker
+          position={{ lat: 48.86380957985594, lng: 2.3443822975053807 }}
         />
-        <Marker position={position}>
-          <Popup>Vous êtes ici</Popup>
-        </Marker>
-      </MapContainer>
+      </GoogleMap>
     </div>
+  ) : (
+    <></>
   );
 }
 
-export default Maps;
+export default React.memo(Maps);
