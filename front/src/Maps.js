@@ -1,17 +1,26 @@
+<<<<<<< HEAD
 import './style/maps.css';
 import Formulaire from './Formulaire';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import axios from 'axios';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+=======
+import "./style/maps.css";
+import Formulaire from "./Formulaire";
+import { useEffect, useState } from "react";
+import React from "react";
+import axios from "axios";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+>>>>>>> 3478e8f (réglages erreur)
 
 const containerStyle = {
-  width: '600px',
-  height: '500px',
+  width: "600px",
+  height: "500px",
 };
 function Maps() {
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: "google-map-script",
     googleMapsApiKey: process.env.GOOGLE_API_KEY,
   });
 

@@ -1,20 +1,19 @@
-import './style/formulaire.css';
-import Auto from './Auto';
-import { useEffect, useState } from 'react';
-import Autocomplete from 'react-google-autocomplete';
-import axios from 'axios';
+import "./style/formulaire.css";
+import { useEffect, useState } from "react";
+import Autocomplete from "react-google-autocomplete";
+import axios from "axios";
 
 var tab1 = [
-  { nom: 'Blandine', adresse: '12 residence de paris' },
-  { nom: 'Université', adresse: '45 rue des Saints-Pères' },
-  { nom: '', adresse: '' },
-  { nom: '', adresse: '' },
-  { nom: '', adresse: '' },
+  { nom: "Blandine", adresse: "12 residence de paris" },
+  { nom: "Université", adresse: "45 rue des Saints-Pères" },
+  { nom: "", adresse: "" },
+  { nom: "", adresse: "" },
+  { nom: "", adresse: "" },
 ];
 
 function Formulaire() {
-  const [nom, setNom] = useState('');
-  const [adresse, setAdresse] = useState('');
+  const [nom, setNom] = useState("");
+  const [adresse, setAdresse] = useState("");
   const [dispo, setDispo] = useState([
     {
       lundi: 0,
@@ -30,7 +29,7 @@ function Formulaire() {
   const data = { nom: nom, adresse: adresse, dispo: dispo };
 
   function envoieData() {
-    axios.post('http://localhost:3000/formulaire', { tab1 }).then((res) => {
+    axios.post("http://localhost:3000/formulaire", { tab1 }).then((res) => {
       console.log(res.data);
     });
   }
@@ -59,7 +58,7 @@ function Formulaire() {
             setAdresse(place.formatted_address);
           }}
           options={{
-            componentRestrictions: { country: 'fr' },
+            componentRestrictions: { country: "fr" },
           }}
         />
         <br />
@@ -92,8 +91,8 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById('name').value = '';
-          document.getElementById('adr').value = '';
+          document.getElementById("name").value = "";
+          document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
           if (semaine[0].checked === true) {
             dispo[0].lundi++;
@@ -130,8 +129,8 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById('name').value = '';
-          document.getElementById('adr').value = '';
+          document.getElementById("name").value = "";
+          document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
           if (semaine[0].checked === true) {
             dispo[0].lundi++;
