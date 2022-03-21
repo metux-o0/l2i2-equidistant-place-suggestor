@@ -1,20 +1,18 @@
 import './style/formulaire.css';
-import Auto from './Auto';
 import { useEffect, useState } from 'react';
 import Autocomplete from 'react-google-autocomplete';
+import Geocode from 'react-geocode';
 import axios from 'axios';
 
 var tab1 = [
   { nom: 'Blandine', adresse: '12 residence de paris' },
   { nom: 'Université', adresse: '45 rue des Saints-Pères' },
-  { nom: '', adresse: '' },
-  { nom: '', adresse: '' },
-  { nom: '', adresse: '' },
 ];
 
 function Formulaire() {
   const [nom, setNom] = useState('');
   const [adresse, setAdresse] = useState('');
+  const [latlng, setLatlng] = useState({});
   const [dispo, setDispo] = useState([
     {
       lundi: 0,
@@ -26,8 +24,33 @@ function Formulaire() {
       dimanche: 0,
     },
   ]);
+  const data = { nom: nom, adresse: adresse, latlng: latlng };
 
-  const data = { nom: nom, adresse: adresse, dispo: dispo };
+  function convertToAdress(newLat, newLng) {
+    Geocode.fromLatLng(newLat, newLng).then(
+      (response) => {
+        const address = response.results[0].formatted_address,
+          addressArray = response.results[0].address_components;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  function convertToLatLng(adr) {
+    Geocode.setApiKey(process.env.GOOGLE_API_KEY);
+    Geocode.enableDebug(false);
+    Geocode.fromAddress(adr).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setLatlng({ lat, lng });
+        console.log(lat, lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
   function envoieData() {
     axios.post('http://localhost:3000/formulaire', { tab1 }).then((res) => {
@@ -55,11 +78,12 @@ function Formulaire() {
           id="adr"
           apiKey={process.env.GOOGLE_API_KEY}
           onPlaceSelected={(place, inputRef, autocomplete) => {
-            console.log(place.geometry.location);
+            convertToLatLng(place.formatted_address);
             setAdresse(place.formatted_address);
           }}
           options={{
             componentRestrictions: { country: 'fr' },
+            types: ['geocode', 'establishment'],
           }}
         />
         <br />
