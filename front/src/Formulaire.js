@@ -38,7 +38,7 @@ function Formulaire() {
     );
   }
   function convertToLatLng(adr) {
-    Geocode.setApiKey(process.env.GOOGLE_API_KEY);
+    Geocode.setApiKey('AIzaSyBJywaiiFQRA29Ugg0sK0FMTlXLf-22uOw');
     Geocode.enableDebug(false);
     Geocode.fromAddress(adr).then(
       (response) => {
@@ -145,6 +145,7 @@ function Formulaire() {
           }
           console.table(dispo);
           console.table(tab1);
+          console.log(tab1[2].latlng);
           envoieData();
         }}
       />
