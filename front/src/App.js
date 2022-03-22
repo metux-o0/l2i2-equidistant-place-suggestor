@@ -12,8 +12,8 @@ function App() {
       <Nav></Nav>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/formulaire" element={<Maps />} />
-        <Route path="/carte" element={<Formulaire />} />
+        <Route path="/formulaire" element={<Formulaire />} />
+        <Route path="/carte" element={<Maps />} />
       </Routes>
     </div>
   );

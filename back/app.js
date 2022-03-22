@@ -10,12 +10,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../front/public")));
 
-app.post("/formulaire", (req, res) => {
-  const donnee = req.body;
+var tab_pers;
+
+app.post('/formulaire', (req, res) => {
+  tab_pers = req.body;
   console.log(req.body);
 });
 
-app.get("/carte", (req, res) => {});
+app.get('/carte', (req, res) => {
+  res.send(tab_pers);
+  console.log(tab_pers);
+});
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../front/public/index.html"));
 });
