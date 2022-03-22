@@ -1,5 +1,5 @@
 import "./style/formulaire.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Autocomplete from "react-google-autocomplete";
 import Geocode from "react-geocode";
 import axios from "axios";
@@ -13,7 +13,7 @@ function Formulaire() {
   const [nom, setNom] = useState("");
   const [adresse, setAdresse] = useState("");
   const [latlng, setLatlng] = useState({});
-  const [dispo, setDispo] = useState([
+  const [dispo] = useState([
     {
       lundi: 0,
       mardi: 0,
@@ -38,7 +38,7 @@ function Formulaire() {
     );
   }
   function convertToLatLng(adr) {
-    Geocode.setApiKey("KEY");
+    Geocode.setApiKey();
     Geocode.enableDebug(false);
     Geocode.fromAddress(adr).then(
       (response) => {
@@ -76,7 +76,7 @@ function Formulaire() {
         </label>
         <Autocomplete
           id="adr"
-          apiKey={process.env.GOOGLE_API_KEY}
+          apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
           onPlaceSelected={(place, inputRef, autocomplete) => {
             convertToLatLng(place.formatted_address);
             setAdresse(place.formatted_address);
