@@ -1,17 +1,17 @@
-import './style/formulaire.css';
-import { useEffect, useState } from 'react';
-import Autocomplete from 'react-google-autocomplete';
-import Geocode from 'react-geocode';
-import axios from 'axios';
+import "./style/formulaire.css";
+import { useEffect, useState } from "react";
+import Autocomplete from "react-google-autocomplete";
+import Geocode from "react-geocode";
+import axios from "axios";
 
 var tab1 = [
-  { nom: 'Blandine', adresse: '12 residence de paris' },
-  { nom: 'Université', adresse: '45 rue des Saints-Pères' },
+  { nom: "Blandine", adresse: "12 residence de paris" },
+  { nom: "Université", adresse: "45 rue des Saints-Pères" },
 ];
 
 function Formulaire() {
-  const [nom, setNom] = useState('');
-  const [adresse, setAdresse] = useState('');
+  const [nom, setNom] = useState("");
+  const [adresse, setAdresse] = useState("");
   const [latlng, setLatlng] = useState({});
   const [dispo, setDispo] = useState([
     {
@@ -38,7 +38,7 @@ function Formulaire() {
     );
   }
   function convertToLatLng(adr) {
-    Geocode.setApiKey('AIzaSyBJywaiiFQRA29Ugg0sK0FMTlXLf-22uOw');
+    Geocode.setApiKey("KEY");
     Geocode.enableDebug(false);
     Geocode.fromAddress(adr).then(
       (response) => {
@@ -53,7 +53,7 @@ function Formulaire() {
   }
 
   function envoieData() {
-    axios.post('http://localhost:3000/formulaire', { tab1 }).then((res) => {
+    axios.post("http://localhost:3000/formulaire", { tab1 }).then((res) => {
       console.log(res.data);
     });
   }
@@ -82,8 +82,8 @@ function Formulaire() {
             setAdresse(place.formatted_address);
           }}
           options={{
-            componentRestrictions: { country: 'fr' },
-            types: ['geocode', 'establishment'],
+            componentRestrictions: { country: "fr" },
+            types: ["geocode", "establishment"],
           }}
         />
         <br />
@@ -116,8 +116,8 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById('name').value = '';
-          document.getElementById('adr').value = '';
+          document.getElementById("name").value = "";
+          document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
           if (semaine[0].checked === true) {
             dispo[0].lundi++;
@@ -155,8 +155,8 @@ function Formulaire() {
         id="boutton"
         onClick={() => {
           tab1.push(data);
-          document.getElementById('name').value = '';
-          document.getElementById('adr').value = '';
+          document.getElementById("name").value = "";
+          document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
           if (semaine[0].checked === true) {
             dispo[0].lundi++;

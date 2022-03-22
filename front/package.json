@@ -6,7 +6,6 @@
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
-    "@googlemaps/react-wrapper": "^1.1.27",
     "@react-google-maps/api": "^2.7.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
@@ -18,7 +17,6 @@
     "react-dom": "^17.0.2",
     "react-geocode": "^0.2.3",
     "react-google-autocomplete": "^2.6.1",
-    "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
