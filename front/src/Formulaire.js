@@ -1,5 +1,5 @@
 import "./style/formulaire.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Autocomplete from "react-google-autocomplete";
 import Geocode from "react-geocode";
 import axios from "axios";
@@ -7,13 +7,14 @@ import axios from "axios";
 var tab1 = [
   { nom: "Blandine", adresse: "12 residence de paris" },
   { nom: "Université", adresse: "45 rue des Saints-Pères" },
+  { nom: "Rafika", adresse: "24 rue de Paris" },
 ];
 
 function Formulaire() {
   const [nom, setNom] = useState("");
   const [adresse, setAdresse] = useState("");
   const [latlng, setLatlng] = useState({});
-  const [dispo, setDispo] = useState([
+  const [dispo] = useState([
     {
       lundi: 0,
       mardi: 0,
@@ -24,7 +25,7 @@ function Formulaire() {
       dimanche: 0,
     },
   ]);
-  const data = { nom: nom, adresse: adresse, latlng: latlng };
+  const data = { nom, adresse, latlng };
 
   function convertToAdress(newLat, newLng) {
     Geocode.fromLatLng(newLat, newLng).then(
@@ -38,7 +39,7 @@ function Formulaire() {
     );
   }
   function convertToLatLng(adr) {
-    Geocode.setApiKey("KEY");
+    Geocode.setApiKey();
     Geocode.enableDebug(false);
     Geocode.fromAddress(adr).then(
       (response) => {
@@ -57,6 +58,70 @@ function Formulaire() {
       console.log(res.data);
     });
   }
+  /**
+   *
+   * @returns Array un tableau contenant 7 prochains jours (jour n° du mois ) exemple Mercredi 23
+   */
+  const prochain_jour_numero = () => {
+    const date_now = new Date();
+    const array = [];
+    for (let i = 0; i < 7; i++) {
+      array.push(date_now.toString());
+      date_now.setDate(date_now.getDate() + 1);
+    }
+    const array_jour = [];
+    let jour = null;
+    for (let i = 0; i < 7; i++) {
+      if (array[i].substring(0, 3) === "Mon") {
+        jour = "Lundi";
+      } else if (array[i].substring(0, 3) === "Tue") {
+        jour = "Mardi";
+      } else if (array[i].substring(0, 3) === "Wed") {
+        jour = "Mercredi";
+      } else if (array[i].substring(0, 3) === "Thu") {
+        jour = "Jeudi";
+      } else if (array[i].substring(0, 3) === "Fri") {
+        jour = "Vendredi";
+      } else if (array[i].substring(0, 3) === "Sat") {
+        jour = "Samedi";
+      } else if (array[i].substring(0, 3) === "Sun") {
+        jour = "Dimanche";
+      }
+      array_jour.push(jour + " " + array[i].substring(8, 10));
+    }
+    return array_jour;
+  };
+  const prochain_jour = () => {
+    const date_now = new Date();
+    const array = [];
+    for (let i = 0; i < 7; i++) {
+      array.push(date_now.toString());
+      date_now.setDate(date_now.getDate() + 1);
+    }
+    const array_jour = [];
+    let jour = null;
+    for (let i = 0; i < 7; i++) {
+      if (array[i].substring(0, 3) === "Mon") {
+        jour = "Lundi";
+      } else if (array[i].substring(0, 3) === "Tue") {
+        jour = "Mardi";
+      } else if (array[i].substring(0, 3) === "Wed") {
+        jour = "Mercredi";
+      } else if (array[i].substring(0, 3) === "Thu") {
+        jour = "Jeudi";
+      } else if (array[i].substring(0, 3) === "Fri") {
+        jour = "Vendredi";
+      } else if (array[i].substring(0, 3) === "Sat") {
+        jour = "Samedi";
+      } else if (array[i].substring(0, 3) === "Sun") {
+        jour = "Dimanche";
+      }
+      array_jour.push(jour.toLowerCase());
+    }
+    return array_jour;
+  };
+  const prochainjn = prochain_jour_numero();
+  const prochain = prochain_jour();
 
   return (
     <div id="formulaire">
@@ -76,7 +141,7 @@ function Formulaire() {
         </label>
         <Autocomplete
           id="adr"
-          apiKey={process.env.GOOGLE_API_KEY}
+          apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
           onPlaceSelected={(place, inputRef, autocomplete) => {
             convertToLatLng(place.formatted_address);
             setAdresse(place.formatted_address);
@@ -89,26 +154,61 @@ function Formulaire() {
         <br />
         <label id="case">Disponibilité :</label>
         <br />
-        <input type="checkbox" id="case1" name="lundi" value="lundi" />
-        <label htmlform="lundi">Lundi</label>
+        <input
+          type="checkbox"
+          id="case1"
+          name={prochain[0]}
+          value={prochain[0]}
+        />
+        <label htmlform={prochain[0]}>{prochainjn[0]}</label>
         <br />
-        <input type="checkbox" id="case2" name="mardi" value="mardi" />
-        <label htmlform="mardi">Mardi</label>
+        <input
+          type="checkbox"
+          id="case2"
+          name={prochain[1]}
+          value={prochain[1]}
+        />
+        <label htmlform={prochain[1]}>{prochainjn[1]}</label>
         <br />
-        <input type="checkbox" id="case3" name="mercredi" value="mercredi" />
-        <label htmlform="mercredi">Mercredi</label>
+        <input
+          type="checkbox"
+          id="case3"
+          name={prochain[2]}
+          value={prochain[2]}
+        />
+        <label htmlform={prochain[2]}>{prochainjn[2]}</label>
         <br />
-        <input type="checkbox" id="case4" name="jeudi" value="jeudi" />
-        <label htmlform="jeudi">Jeudi</label>
+        <input
+          type="checkbox"
+          id="case4"
+          name={prochain[3]}
+          value={prochain[3]}
+        />
+        <label htmlform={prochain[3]}>{prochainjn[3]}</label>
         <br />
-        <input type="checkbox" id="case5" name="vendredi" value="vendredi" />
-        <label htmlform="vendredi">Vendredi</label>
+        <input
+          type="checkbox"
+          id="case5"
+          name={prochain[4]}
+          value={prochain[4]}
+        />
+        <label htmlform={prochain[4]}>{prochainjn[4]}</label>
         <br />
-        <input type="checkbox" id="case6" name="samedi" value="samedi" />
-        <label htmlform="samedi">Samedi</label>
+        <input
+          type="checkbox"
+          id="case6"
+          name={prochain[5]}
+          value={prochain[5]}
+        />
+        <label htmlform={prochain[5]}>{prochainjn[5]}</label>
         <br />
-        <input type="checkbox" id="case7" name="dimanche" value="dimanche" />
-        <label htmlform="dimanche">Dimanche</label>
+        <input
+          type="checkbox"
+          id="case7"
+          name={prochain[6]}
+          value={prochain[6]}
+        />
+        <label htmlform={prochain[6]}>{prochainjn[6]}</label>
       </form>
       <input
         type="submit"

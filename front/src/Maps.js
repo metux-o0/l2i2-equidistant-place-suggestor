@@ -1,13 +1,12 @@
-import './style/maps.css';
-import Formulaire from './Formulaire';
-import { useEffect, useState } from 'react';
-import React from 'react';
-import axios from 'axios';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import "./style/maps.css";
+import { useEffect } from "react";
+import React from "react";
+import axios from "axios";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
-  width: '600px',
-  height: '500px',
+  width: "600px",
+  height: "500px",
 };
 
 function Maps() {
@@ -18,13 +17,13 @@ function Maps() {
   function ajoutMarker(latlng) {
     var marker = new window.google.maps.Marker({
       position: latlng,
-      map: document.getElementById('carte'),
-      title: 'Nouveau PIN',
+      map: document.getElementById("carte"),
+      title: "Nouveau PIN",
     });
   }
   useEffect(() => {
     axios
-      .get('http://localhost:3000/carte')
+      .get(`${process.env.REACT_APP_BACK_END_URL}/carte`)
       .then((res) => {
         for (var i = 0; i < res.data.tab1.length; i++) {
           affichedd(res.data.tab1[i].nom);
@@ -36,8 +35,8 @@ function Maps() {
   });
 
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.GOOGLE_API_KEY,
+    id: "google-map-script",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
   const [map, setMap] = React.useState(null);
