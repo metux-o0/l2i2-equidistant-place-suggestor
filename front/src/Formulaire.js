@@ -39,7 +39,7 @@ function Formulaire() {
     );
   }
   function convertToLatLng(adr) {
-    Geocode.setApiKey();
+    Geocode.setApiKey(process.env.GOOGLE_API_KEY);
     Geocode.enableDebug(false);
     Geocode.fromAddress(adr).then(
       (response) => {
@@ -54,9 +54,14 @@ function Formulaire() {
   }
 
   function envoieData() {
-    axios.post("http://localhost:3000/formulaire", { tab1 }).then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post("http://localhost:3000/formulaire", { tab1 })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   /**
    *
@@ -141,7 +146,7 @@ function Formulaire() {
         </label>
         <Autocomplete
           id="adr"
-          apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+          apiKey={process.env.GOOGLE_API_KEY}
           onPlaceSelected={(place, inputRef, autocomplete) => {
             convertToLatLng(place.formatted_address);
             setAdresse(place.formatted_address);
