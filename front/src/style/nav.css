@@ -1,13 +1,12 @@
 nav ul {
   position: relative;
-  background-color: rgba(126, 79, 136, 0.8);
+  width: 1200px;
   text-align: center;
-  margin: 20px 0;
+  margin: 25px 70px;
   padding: 10px 5px 10px 5px;
-  border-style: dotted;
-  border-width: 3px;
-  border-color: rgb(13, 3, 14);
-  border-radius: 10px;
+  border-style: dashed none dashed none;
+  border-width: 5px;
+  border-color: rgb(44, 111, 143);
   list-style-type: none;
 }
 nav li {
@@ -20,6 +19,8 @@ nav li {
 #link {
   text-decoration: none;
   color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
 }
 
 #link:hover {

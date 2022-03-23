@@ -23,20 +23,20 @@ function Maps() {
   }
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACK_END_URL}/carte`)
+      .get("http://localhost:3000/carte")
       .then((res) => {
         for (var i = 0; i < res.data.tab1.length; i++) {
-          affichedd(res.data.tab1[i].nom);
+          affichedd(res.data.tab1[i].latlng);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    googleMapsApiKey: process.env.GOOGLE_API_KEY,
   });
 
   const [map, setMap] = React.useState(null);
