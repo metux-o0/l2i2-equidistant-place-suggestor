@@ -25,7 +25,7 @@ function Formulaire() {
       dimanche: 0,
     },
   ]);
-  const data = { nom: nom, adresse: adresse, latlng: latlng };
+  const data = { nom, adresse, latlng };
 
   function convertToAdress(newLat, newLng) {
     Geocode.fromLatLng(newLat, newLng).then(
@@ -58,6 +58,40 @@ function Formulaire() {
       console.log(res.data);
     });
   }
+  /**
+   *
+   * @returns Array un tableau contenant 7 prochains jours (jour n° du mois ) exemple Mercredi 23
+   */
+  const prochain_jour = () => {
+    const date_now = new Date();
+    const array = [];
+    for (let i = 0; i < 7; i++) {
+      array.push(date_now.toString());
+      date_now.setDate(date_now.getDate() + 1);
+    }
+    const array_jour = [];
+    let jour = null;
+    for (let i = 0; i < 7; i++) {
+      if (array[i].substring(0, 3) === "Mon") {
+        jour = "Lundi";
+      } else if (array[i].substring(0, 3) === "Tue") {
+        jour = "Mardi";
+      } else if (array[i].substring(0, 3) === "Wed") {
+        jour = "Mercredi";
+      } else if (array[i].substring(0, 3) === "Thu") {
+        jour = "Jeudi";
+      } else if (array[i].substring(0, 3) === "Fri") {
+        jour = "Vendredi";
+      } else if (array[i].substring(0, 3) === "Sat") {
+        jour = "Samedi";
+      } else if (array[i].substring(0, 3) === "Sun") {
+        jour = "Dimanche";
+      }
+      array_jour.push(jour + " " + array[i].substring(8, 10));
+    }
+    return array_jour;
+  };
+  const prochain = prochain_jour();
 
   return (
     <div id="formulaire">
@@ -91,25 +125,25 @@ function Formulaire() {
         <label id="case">Disponibilité :</label>
         <br />
         <input type="checkbox" id="case1" name="lundi" value="lundi" />
-        <label htmlform="lundi">Lundi</label>
+        <label htmlform="lundi">{prochain[0]}</label>
         <br />
         <input type="checkbox" id="case2" name="mardi" value="mardi" />
-        <label htmlform="mardi">Mardi</label>
+        <label htmlform="mardi">{prochain[1]}</label>
         <br />
         <input type="checkbox" id="case3" name="mercredi" value="mercredi" />
-        <label htmlform="mercredi">Mercredi</label>
+        <label htmlform="mercredi">{prochain[2]}</label>
         <br />
         <input type="checkbox" id="case4" name="jeudi" value="jeudi" />
-        <label htmlform="jeudi">Jeudi</label>
+        <label htmlform="jeudi">{prochain[3]}</label>
         <br />
         <input type="checkbox" id="case5" name="vendredi" value="vendredi" />
-        <label htmlform="vendredi">Vendredi</label>
+        <label htmlform="vendredi">{prochain[4]}</label>
         <br />
         <input type="checkbox" id="case6" name="samedi" value="samedi" />
-        <label htmlform="samedi">Samedi</label>
+        <label htmlform="samedi">{prochain[5]}</label>
         <br />
         <input type="checkbox" id="case7" name="dimanche" value="dimanche" />
-        <label htmlform="dimanche">Dimanche</label>
+        <label htmlform="dimanche">{prochain[6]}</label>
       </form>
       <input
         type="submit"
