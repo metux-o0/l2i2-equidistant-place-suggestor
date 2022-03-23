@@ -5,6 +5,7 @@ import Header from "./Header";
 import Maps from "./Maps";
 import { Route, Routes } from "react-router-dom";
 import Autocomplete from "./Autocomplete";
+import Restau from "./Restau";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Autocomplete onchange={() => null} />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/formulaire" element={<Maps />} />
+        <Route path="/formulaire" element={<Restau />} />
         <Route path="/carte" element={<Formulaire />} />
       </Routes>
     </div>

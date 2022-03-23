@@ -1,7 +1,7 @@
 import "./style/formulaire.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { google } from "google-maps-react";
 var tab1 = [];
 
 function Formulaire() {
@@ -28,6 +28,48 @@ function Formulaire() {
   axios
     .post("http://localhost:3000/formulaire", { ...data })
     .then((res) => console.log(res.data.message));
+
+  var objLocation, objMaps, objCurrentLocationMarker, objInfoWindow, objService;
+  function doSearch() {
+    objService.nearbySearch(
+      {
+        location: objLocation,
+        radius: 2000,
+        types: ["restaurant"],
+      },
+      function (results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+    );
+  }
+  function createMarker(objPlace) {
+    if (objPlace.types[0] !== "restaurant") {
+      return;
+    }
+
+    var objMarker = new google.maps.Marker({
+      position: objPlace.geometry.location,
+      map: objMaps,
+      icon: "http://www.google.com/mapfiles/ms/micons/purple-dot.png",
+      title: objPlace.name,
+    });
+
+    google.maps.event.addListener(objMarker, "click", function () {
+      var strHTML = "<b>" + objPlace.name + "</b><br />";
+      if (objPlace.types[0] == "restaurant") {
+        strHTML += "Resto";
+      } else {
+        strHTML += "Inconnu (" + objPlace.types[0] + ")";
+      }
+
+      objInfoWindow.setContent(strHTML);
+      objInfoWindow.open(objMaps, this);
+    });
+  }
 
   return (
     <div id="formulaire" /*onLoad={init}*/>
