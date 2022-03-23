@@ -219,26 +219,45 @@ function Formulaire() {
           document.getElementById("name").value = "";
           document.getElementById("adr").value = "";
           var semaine = document.querySelectorAll('input[type="checkbox"]');
+          const prochain1 = prochain_jour();
+          const verification = (jour) => {
+            if (jour === "lundi") {
+              dispo[0].lundi++;
+            } else if (jour === "mardi") {
+              dispo[0].mardi++;
+            } else if (jour === "mercredi") {
+              dispo[0].mercredi++;
+            } else if (jour === "jeudi") {
+              dispo[0].jeudi++;
+            } else if (jour === "vendredi") {
+              dispo[0].vendredi++;
+            } else if (jour === "samedi") {
+              dispo[0].samedi++;
+            } else if (jour === "dimanche") {
+              dispo[0].dimanche++;
+            }
+          };
+
           if (semaine[0].checked === true) {
-            dispo[0].lundi++;
+            verification(prochain1[0]);
           }
           if (semaine[1].checked === true) {
-            dispo[0].mardi++;
+            verification(prochain1[1]);
           }
           if (semaine[2].checked === true) {
-            dispo[0].mercredi++;
+            verification(prochain1[2]);
           }
           if (semaine[3].checked === true) {
-            dispo[0].jeudi++;
+            verification(prochain1[3]);
           }
           if (semaine[4].checked === true) {
-            dispo[0].vendredi++;
+            verification(prochain1[4]);
           }
           if (semaine[5].checked === true) {
-            dispo[0].samedi++;
+            verification(prochain1[5]);
           }
           if (semaine[6].checked === true) {
-            dispo[0].dimanche++;
+            verification(prochain1[6]);
           }
           for (var i = 0; i < semaine.length; i++) {
             semaine[i].checked = false;
