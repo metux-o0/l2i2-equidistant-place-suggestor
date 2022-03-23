@@ -62,7 +62,7 @@ function Formulaire() {
    *
    * @returns Array un tableau contenant 7 prochains jours (jour n° du mois ) exemple Mercredi 23
    */
-  const prochain_jour = () => {
+  const prochain_jour_numero = () => {
     const date_now = new Date();
     const array = [];
     for (let i = 0; i < 7; i++) {
@@ -91,6 +91,36 @@ function Formulaire() {
     }
     return array_jour;
   };
+  const prochain_jour = () => {
+    const date_now = new Date();
+    const array = [];
+    for (let i = 0; i < 7; i++) {
+      array.push(date_now.toString());
+      date_now.setDate(date_now.getDate() + 1);
+    }
+    const array_jour = [];
+    let jour = null;
+    for (let i = 0; i < 7; i++) {
+      if (array[i].substring(0, 3) === "Mon") {
+        jour = "Lundi";
+      } else if (array[i].substring(0, 3) === "Tue") {
+        jour = "Mardi";
+      } else if (array[i].substring(0, 3) === "Wed") {
+        jour = "Mercredi";
+      } else if (array[i].substring(0, 3) === "Thu") {
+        jour = "Jeudi";
+      } else if (array[i].substring(0, 3) === "Fri") {
+        jour = "Vendredi";
+      } else if (array[i].substring(0, 3) === "Sat") {
+        jour = "Samedi";
+      } else if (array[i].substring(0, 3) === "Sun") {
+        jour = "Dimanche";
+      }
+      array_jour.push(jour.toLowerCase());
+    }
+    return array_jour;
+  };
+  const prochainjn = prochain_jour_numero();
   const prochain = prochain_jour();
 
   return (
@@ -124,26 +154,61 @@ function Formulaire() {
         <br />
         <label id="case">Disponibilité :</label>
         <br />
-        <input type="checkbox" id="case1" name="lundi" value="lundi" />
-        <label htmlform="lundi">{prochain[0]}</label>
+        <input
+          type="checkbox"
+          id="case1"
+          name={prochain[0]}
+          value={prochain[0]}
+        />
+        <label htmlform={prochain[0]}>{prochainjn[0]}</label>
         <br />
-        <input type="checkbox" id="case2" name="mardi" value="mardi" />
-        <label htmlform="mardi">{prochain[1]}</label>
+        <input
+          type="checkbox"
+          id="case2"
+          name={prochain[1]}
+          value={prochain[1]}
+        />
+        <label htmlform={prochain[1]}>{prochainjn[1]}</label>
         <br />
-        <input type="checkbox" id="case3" name="mercredi" value="mercredi" />
-        <label htmlform="mercredi">{prochain[2]}</label>
+        <input
+          type="checkbox"
+          id="case3"
+          name={prochain[2]}
+          value={prochain[2]}
+        />
+        <label htmlform={prochain[2]}>{prochainjn[2]}</label>
         <br />
-        <input type="checkbox" id="case4" name="jeudi" value="jeudi" />
-        <label htmlform="jeudi">{prochain[3]}</label>
+        <input
+          type="checkbox"
+          id="case4"
+          name={prochain[3]}
+          value={prochain[3]}
+        />
+        <label htmlform={prochain[3]}>{prochainjn[3]}</label>
         <br />
-        <input type="checkbox" id="case5" name="vendredi" value="vendredi" />
-        <label htmlform="vendredi">{prochain[4]}</label>
+        <input
+          type="checkbox"
+          id="case5"
+          name={prochain[4]}
+          value={prochain[4]}
+        />
+        <label htmlform={prochain[4]}>{prochainjn[4]}</label>
         <br />
-        <input type="checkbox" id="case6" name="samedi" value="samedi" />
-        <label htmlform="samedi">{prochain[5]}</label>
+        <input
+          type="checkbox"
+          id="case6"
+          name={prochain[5]}
+          value={prochain[5]}
+        />
+        <label htmlform={prochain[5]}>{prochainjn[5]}</label>
         <br />
-        <input type="checkbox" id="case7" name="dimanche" value="dimanche" />
-        <label htmlform="dimanche">{prochain[6]}</label>
+        <input
+          type="checkbox"
+          id="case7"
+          name={prochain[6]}
+          value={prochain[6]}
+        />
+        <label htmlform={prochain[6]}>{prochainjn[6]}</label>
       </form>
       <input
         type="submit"
