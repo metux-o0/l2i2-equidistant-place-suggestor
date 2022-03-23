@@ -46,7 +46,6 @@ function Maps() {
       <GoogleMap
         id="carte"
         mapContainerStyle={containerStyle}
-        type={"restaurant"}
         center={{ lat: 48.86380957985594, lng: 2.3443822975053807 }}
         zoom={11}
         onClick={(e) => {

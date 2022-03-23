@@ -7,6 +7,7 @@ import axios from "axios";
 var tab1 = [
   { nom: "Blandine", adresse: "12 residence de paris" },
   { nom: "Université", adresse: "45 rue des Saints-Pères" },
+  { nom: "Rafika", adresse: "24 rue de Paris" },
 ];
 
 function Formulaire() {
