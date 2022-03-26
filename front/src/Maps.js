@@ -1,48 +1,43 @@
-import "./style/maps.css";
-import { useEffect } from "react";
-import React from "react";
-import axios from "axios";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import './style/maps.css';
+import Formulaire from './Formulaire';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import axios from 'axios';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: "600px",
-  height: "500px",
+  width: '600px',
+  height: '500px',
 };
 
 function Maps() {
-  function affichedd(a) {
-    console.log(a);
-  }
+  const [map, setMap] = useState(null);
+  const [markers, setMarkers] = useState([]);
+  const [datesDispo, setDatesDispo] = useState(['lundi', 'samedi']);
 
-  function ajoutMarker(latlng) {
-    var marker = new window.google.maps.Marker({
-      position: latlng,
-      map: document.getElementById("carte"),
-      title: "Nouveau PIN",
-    });
-  }
+  const getData = async () => {
+    try {
+      const res = await axios.get('http://localhost:3000/carte');
+      setMarkers(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/carte")
-      .then((res) => {
-        for (var i = 0; i < res.data.tab1.length; i++) {
-          affichedd(res.data.tab1[i].latlng);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    window.addEventListener('click', getData);
+    return () => {
+      window.removeEventListener('click', getData);
+    };
+  }, [markers]);
 
   const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
+    id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
-  const [map, setMap] = React.useState(null);
-
   return isLoaded ? (
     <div>
+      <h4>Date Disponibilité : {datesDispo}</h4>
       <GoogleMap
         id="carte"
         mapContainerStyle={containerStyle}
@@ -52,9 +47,19 @@ function Maps() {
           console.log(e);
         }}
       >
-        <Marker
-          position={{ lat: 48.86380957985594, lng: 2.3443822975053807 }}
-        />
+        {markers.map((res) => {
+          return (
+            <div>
+              <Marker
+                key={res.nom}
+                position={{
+                  lat: res.latlng.lat,
+                  lng: res.latlng.lng,
+                }}
+              />
+            </div>
+          );
+        })}
       </GoogleMap>
     </div>
   ) : (

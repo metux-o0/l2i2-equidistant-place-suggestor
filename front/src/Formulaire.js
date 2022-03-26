@@ -1,18 +1,160 @@
-import "./style/formulaire.css";
-import { useState } from "react";
-import Autocomplete from "react-google-autocomplete";
-import Geocode from "react-geocode";
-import axios from "axios";
+import './style/formulaire.css';
+import { useState } from 'react';
+import Autocomplete from 'react-google-autocomplete';
+import Geocode from 'react-geocode';
+import axios from 'axios';
+
+/**
+ *
+ * @returns Array un tableau contenant 7 prochains jours (jour n° du mois ) exemple Mercredi 23
+ */
+const prochain_jour_numero = () => {
+  const date_now = new Date();
+  const array = [];
+  for (let i = 0; i < 7; i++) {
+    array.push(date_now.toString());
+    date_now.setDate(date_now.getDate() + 1);
+  }
+  const array_jour = [];
+  let jour = null;
+  for (let i = 0; i < 7; i++) {
+    if (array[i].substring(0, 3) === 'Mon') {
+      jour = 'Lundi';
+    } else if (array[i].substring(0, 3) === 'Tue') {
+      jour = 'Mardi';
+    } else if (array[i].substring(0, 3) === 'Wed') {
+      jour = 'Mercredi';
+    } else if (array[i].substring(0, 3) === 'Thu') {
+      jour = 'Jeudi';
+    } else if (array[i].substring(0, 3) === 'Fri') {
+      jour = 'Vendredi';
+    } else if (array[i].substring(0, 3) === 'Sat') {
+      jour = 'Samedi';
+    } else if (array[i].substring(0, 3) === 'Sun') {
+      jour = 'Dimanche';
+    }
+    array_jour.push(jour + ' ' + array[i].substring(8, 10));
+  }
+  return array_jour;
+};
+const prochain_jour = () => {
+  const date_now = new Date();
+  const array = [];
+  for (let i = 0; i < 7; i++) {
+    array.push(date_now.toString());
+    date_now.setDate(date_now.getDate() + 1);
+  }
+  const array_jour = [];
+  let jour = null;
+  for (let i = 0; i < 7; i++) {
+    if (array[i].substring(0, 3) === 'Mon') {
+      jour = 'Lundi';
+    } else if (array[i].substring(0, 3) === 'Tue') {
+      jour = 'Mardi';
+    } else if (array[i].substring(0, 3) === 'Wed') {
+      jour = 'Mercredi';
+    } else if (array[i].substring(0, 3) === 'Thu') {
+      jour = 'Jeudi';
+    } else if (array[i].substring(0, 3) === 'Fri') {
+      jour = 'Vendredi';
+    } else if (array[i].substring(0, 3) === 'Sat') {
+      jour = 'Samedi';
+    } else if (array[i].substring(0, 3) === 'Sun') {
+      jour = 'Dimanche';
+    }
+    array_jour.push(jour.toLowerCase());
+  }
+  return array_jour;
+};
+const prochainjn = prochain_jour_numero();
+const prochain = prochain_jour();
 
 var tab1 = [
-  { nom: "Blandine", adresse: "12 residence de paris" },
-  { nom: "Université", adresse: "45 rue des Saints-Pères" },
-  { nom: "Rafika", adresse: "24 rue de Paris" },
+  {
+    nom: 'Blandine',
+    adresse: '12 residence de paris',
+    latlng: { lat: 48.86639876369186, lng: 2.346441235774299 },
+  },
+  {
+    nom: 'Université',
+    adresse: '45 rue des Saints-Pères',
+    latlng: { lat: 48.85522290905313, lng: 2.3319466418882806 },
+  },
+  {
+    nom: 'Rafika',
+    adresse: '45 rue des Saints-Pères',
+    latlng: { lat: 48.95522290905313, lng: 2.3319466418882806 },
+  },
+  {
+    nom: 'Boubakar',
+    adresse: '45 rue des Saints-Pères',
+    latlng: { lat: 48.8587413, lng: 2.38787 },
+  },
+  {
+    nom: 'Personne 5',
+    adresse: '45 rue des Saints-Pères',
+    latlng: { lat: 48.85654165, lng: 2.374126 },
+  },
+  {
+    nom: 'Personne 6',
+    adresse: '45 rue des Saints-Pères',
+    latlng: { lat: 48.8559841513, lng: 2.39856806 },
+  },
+  {
+    nom: 'Restaurant',
+    adresse: '45 rue des Saints-Pères',
+    latlng: { lat: 48.855784653, lng: 2.339852 },
+  },
 ];
 
+function jourMax(dispo) {
+  var tab_dispo = Object.keys(dispo[0]).map(function (key) {
+    return [key, dispo[0][key]];
+  });
+  //Trouve le max
+  var max = tab_dispo[0][1];
+  for (var i = 1; i < 6; i++) {
+    if (tab_dispo[i][1] > max) {
+      max = tab_dispo[i][1];
+    }
+  }
+  //Trouve les jours correspondands au max
+  var tab_jour = [];
+  for (var j = 0; j < 6; j++) {
+    if (max === tab_dispo[j][1]) {
+      tab_jour.push(tab_dispo[j]);
+    }
+  }
+  for (var k = 0; k < tab_jour.length; k++) {
+    if (tab_jour[k][0] == 'lundi') {
+      tab_jour[k] = prochain[0];
+    }
+    if (tab_jour[k][0] == 'mardi') {
+      tab_jour[k] = prochain[1];
+    }
+    if (tab_jour[k][0] == 'mercredi') {
+      tab_jour[k] = prochain[2];
+    }
+    if (tab_jour[k][0] == 'jeudi') {
+      tab_jour[k] = prochain[3];
+    }
+    if (tab_jour[k][0] == 'vendredi') {
+      tab_jour[k] = prochain[4];
+    }
+    if (tab_jour[k][0] == 'samedi') {
+      tab_jour[k] = prochain[5];
+    }
+    if (tab_jour[k][0] == 'dimanche') {
+      tab_jour[k] = prochain[6];
+    }
+  }
+  return tab_jour;
+}
+
 function Formulaire() {
-  const [nom, setNom] = useState("");
-  const [adresse, setAdresse] = useState("");
+  const [pin, setPin] = useState([]);
+  const [nom, setNom] = useState('');
+  const [adresse, setAdresse] = useState('');
   const [latlng, setLatlng] = useState({});
   const [dispo] = useState([
     {
@@ -25,6 +167,7 @@ function Formulaire() {
       dimanche: 0,
     },
   ]);
+  var dateChoisie;
   const data = { nom, adresse, latlng };
 
   function convertToAdress(newLat, newLng) {
@@ -53,84 +196,22 @@ function Formulaire() {
     );
   }
 
-  function envoieData() {
-    axios
-      .post("http://localhost:3000/formulaire", { tab1 })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  const envoieData = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:3000/formulaire', {
+        tab1,
+        dateChoisie,
       });
-  }
-  /**
-   *
-   * @returns Array un tableau contenant 7 prochains jours (jour n° du mois ) exemple Mercredi 23
-   */
-  const prochain_jour_numero = () => {
-    const date_now = new Date();
-    const array = [];
-    for (let i = 0; i < 7; i++) {
-      array.push(date_now.toString());
-      date_now.setDate(date_now.getDate() + 1);
+      console.log(res.data);
+    } catch (e) {
+      alert(e);
     }
-    const array_jour = [];
-    let jour = null;
-    for (let i = 0; i < 7; i++) {
-      if (array[i].substring(0, 3) === "Mon") {
-        jour = "Lundi";
-      } else if (array[i].substring(0, 3) === "Tue") {
-        jour = "Mardi";
-      } else if (array[i].substring(0, 3) === "Wed") {
-        jour = "Mercredi";
-      } else if (array[i].substring(0, 3) === "Thu") {
-        jour = "Jeudi";
-      } else if (array[i].substring(0, 3) === "Fri") {
-        jour = "Vendredi";
-      } else if (array[i].substring(0, 3) === "Sat") {
-        jour = "Samedi";
-      } else if (array[i].substring(0, 3) === "Sun") {
-        jour = "Dimanche";
-      }
-      array_jour.push(jour + " " + array[i].substring(8, 10));
-    }
-    return array_jour;
   };
-  const prochain_jour = () => {
-    const date_now = new Date();
-    const array = [];
-    for (let i = 0; i < 7; i++) {
-      array.push(date_now.toString());
-      date_now.setDate(date_now.getDate() + 1);
-    }
-    const array_jour = [];
-    let jour = null;
-    for (let i = 0; i < 7; i++) {
-      if (array[i].substring(0, 3) === "Mon") {
-        jour = "Lundi";
-      } else if (array[i].substring(0, 3) === "Tue") {
-        jour = "Mardi";
-      } else if (array[i].substring(0, 3) === "Wed") {
-        jour = "Mercredi";
-      } else if (array[i].substring(0, 3) === "Thu") {
-        jour = "Jeudi";
-      } else if (array[i].substring(0, 3) === "Fri") {
-        jour = "Vendredi";
-      } else if (array[i].substring(0, 3) === "Sat") {
-        jour = "Samedi";
-      } else if (array[i].substring(0, 3) === "Sun") {
-        jour = "Dimanche";
-      }
-      array_jour.push(jour.toLowerCase());
-    }
-    return array_jour;
-  };
-  const prochainjn = prochain_jour_numero();
-  const prochain = prochain_jour();
 
   return (
     <div id="formulaire">
-      <form>
+      <form onSubmit={envoieData}>
         <label id="case" htmlform="name">
           Nom :
         </label>
@@ -152,8 +233,8 @@ function Formulaire() {
             setAdresse(place.formatted_address);
           }}
           options={{
-            componentRestrictions: { country: "fr" },
-            types: ["geocode", "establishment"],
+            componentRestrictions: { country: 'fr' },
+            types: ['geocode', 'establishment'],
           }}
         />
         <br />
@@ -214,121 +295,89 @@ function Formulaire() {
           value={prochain[6]}
         />
         <label htmlform={prochain[6]}>{prochainjn[6]}</label>
+        <br />
+        <button
+          type="submit"
+          value="Envoyer"
+          id="boutton"
+          onClick={() => {
+            tab1.push(data);
+            document.getElementById('name').value = '';
+            document.getElementById('adr').value = '';
+            var semaine = document.querySelectorAll('input[type="checkbox"]');
+            if (semaine[0].checked === true) {
+              dispo[0].lundi++;
+            }
+            if (semaine[1].checked === true) {
+              dispo[0].mardi++;
+            }
+            if (semaine[2].checked === true) {
+              dispo[0].mercredi++;
+            }
+            if (semaine[3].checked === true) {
+              dispo[0].jeudi++;
+            }
+            if (semaine[4].checked === true) {
+              dispo[0].vendredi++;
+            }
+            if (semaine[5].checked === true) {
+              dispo[0].samedi++;
+            }
+            if (semaine[6].checked === true) {
+              dispo[0].dimanche++;
+            }
+            for (var i = 0; i < semaine.length; i++) {
+              semaine[i].checked = false;
+            }
+            console.table(dispo);
+            console.table(tab1);
+            console.log(tab1[2].latlng);
+            console.log(jourMax(dispo));
+            dateChoisie = jourMax(dispo);
+          }}
+        >
+          Envoyer
+        </button>
+        <button
+          type="reset"
+          value="Ajouter"
+          id="boutton"
+          onClick={() => {
+            tab1.push(data);
+            document.getElementById('name').value = '';
+            document.getElementById('adr').value = '';
+            var semaine = document.querySelectorAll('input[type="checkbox"]');
+            if (semaine[0].checked === true) {
+              dispo[0].lundi++;
+            }
+            if (semaine[1].checked === true) {
+              dispo[0].mardi++;
+            }
+            if (semaine[2].checked === true) {
+              dispo[0].mercredi++;
+            }
+            if (semaine[3].checked === true) {
+              dispo[0].jeudi++;
+            }
+            if (semaine[4].checked === true) {
+              dispo[0].vendredi++;
+            }
+            if (semaine[5].checked === true) {
+              dispo[0].samedi++;
+            }
+            if (semaine[6].checked === true) {
+              dispo[0].dimanche++;
+            }
+            for (var i = 0; i < semaine.length; i++) {
+              semaine[i].checked = false;
+            }
+            console.table(dispo);
+            console.table(tab1);
+          }}
+        >
+          Ajouter
+        </button>
       </form>
-      <input
-        type="submit"
-        value="Envoyer"
-        id="boutton"
-        onClick={() => {
-          tab1.push(data);
-          document.getElementById("name").value = "";
-          document.getElementById("adr").value = "";
-          var semaine = document.querySelectorAll('input[type="checkbox"]');
-          const prochain1 = prochain_jour();
-          const verification = (jour) => {
-            if (jour === "lundi") {
-              dispo[0].lundi++;
-            } else if (jour === "mardi") {
-              dispo[0].mardi++;
-            } else if (jour === "mercredi") {
-              dispo[0].mercredi++;
-            } else if (jour === "jeudi") {
-              dispo[0].jeudi++;
-            } else if (jour === "vendredi") {
-              dispo[0].vendredi++;
-            } else if (jour === "samedi") {
-              dispo[0].samedi++;
-            } else if (jour === "dimanche") {
-              dispo[0].dimanche++;
-            }
-          };
-
-          if (semaine[0].checked === true) {
-            verification(prochain1[0]);
-          }
-          if (semaine[1].checked === true) {
-            verification(prochain1[1]);
-          }
-          if (semaine[2].checked === true) {
-            verification(prochain1[2]);
-          }
-          if (semaine[3].checked === true) {
-            verification(prochain1[3]);
-          }
-          if (semaine[4].checked === true) {
-            verification(prochain1[4]);
-          }
-          if (semaine[5].checked === true) {
-            verification(prochain1[5]);
-          }
-          if (semaine[6].checked === true) {
-            verification(prochain1[6]);
-          }
-          for (var i = 0; i < semaine.length; i++) {
-            semaine[i].checked = false;
-          }
-          console.table(dispo);
-          console.table(tab1);
-          console.log(tab1[2].latlng);
-          envoieData();
-        }}
-      />
-      <input
-        type="reset"
-        value="Ajouter"
-        id="boutton"
-        onClick={() => {
-          tab1.push(data);
-          document.getElementById("name").value = "";
-          document.getElementById("adr").value = "";
-          var semaine = document.querySelectorAll('input[type="checkbox"]');
-          const prochain1 = prochain_jour();
-          const verification = (jour) => {
-            if (jour === "lundi") {
-              dispo[0].lundi++;
-            } else if (jour === "mardi") {
-              dispo[0].mardi++;
-            } else if (jour === "mercredi") {
-              dispo[0].mercredi++;
-            } else if (jour === "jeudi") {
-              dispo[0].jeudi++;
-            } else if (jour === "vendredi") {
-              dispo[0].vendredi++;
-            } else if (jour === "samedi") {
-              dispo[0].samedi++;
-            } else if (jour === "dimanche") {
-              dispo[0].dimanche++;
-            }
-          };
-
-          if (semaine[0].checked === true) {
-            verification(prochain1[0]);
-          }
-          if (semaine[1].checked === true) {
-            verification(prochain1[1]);
-          }
-          if (semaine[2].checked === true) {
-            verification(prochain1[2]);
-          }
-          if (semaine[3].checked === true) {
-            verification(prochain1[3]);
-          }
-          if (semaine[4].checked === true) {
-            verification(prochain1[4]);
-          }
-          if (semaine[5].checked === true) {
-            verification(prochain1[5]);
-          }
-          if (semaine[6].checked === true) {
-            verification(prochain1[6]);
-          }
-          for (var i = 0; i < semaine.length; i++) {
-            semaine[i].checked = false;
-          }
-          console.table(dispo);
-          console.table(tab1);
-        }}
-      />
     </div>
   );
 }
