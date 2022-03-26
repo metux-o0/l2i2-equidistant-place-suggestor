@@ -259,6 +259,7 @@ function Formulaire() {
             setNom(e.target.value);
           }}
         />
+        <br />
         <label id="case" htmlform="adr">
           Adresse :
         </label>
@@ -275,7 +276,9 @@ function Formulaire() {
           }}
         />
         <br />
+        <br />
         <label id="case">Disponibilité :</label>
+        <br />
         <br />
         <input
           type="checkbox"
