@@ -17,6 +17,7 @@ const prochain_jour_numero = () => {
   }
   const array_jour = [];
   let jour = null;
+  let mois = null;
   for (let i = 0; i < 7; i++) {
     if (array[i].substring(0, 3) === "Mon") {
       jour = "Lundi";
@@ -33,7 +34,43 @@ const prochain_jour_numero = () => {
     } else if (array[i].substring(0, 3) === "Sun") {
       jour = "Dimanche";
     }
-    array_jour.push(jour + " " + array[i].substring(8, 10));
+
+    switch (array[i].substring(4, 7)) {
+      case "Jan":
+        mois = "Janvier";
+        break;
+      case "Feb":
+        mois = "Février";
+        break;
+      case "Mar":
+        mois = "Mars";
+        break;
+      case "Apr":
+        mois = "Avril";
+        break;
+      case "May":
+        mois = "Mai";
+        break;
+      case "Jun":
+        mois = "Juin";
+        break;
+
+      case "Jul":
+        mois = "Juillet";
+        break;
+      case "Aug":
+        mois = "Aout";
+      case "Sep":
+        mois = "Septembre";
+      case "Oct":
+        mois = "Octobre";
+      case "Nov":
+        mois = "Novembre";
+      default:
+        mois = "Décembre";
+        break;
+    }
+    array_jour.push(jour + " " + array[i].substring(8, 10) + " " + mois);
   }
   return array_jour;
 };
