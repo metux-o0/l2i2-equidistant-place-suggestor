@@ -1,14 +1,17 @@
 var axios = require("axios");
+const { response } = require("express");
 
 var config = {
   method: "get",
-  url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.86639876369186%2C2.346441235774299 &radius=100&type=restaurant&key=key",
+  url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.96203%2C2.53253 &radius=20000&type=restaurant&key=AIzaSyAc_6qQv8VDYWVlUD1qSSas2qPlLW6Ah3U",
   headers: {},
 };
 
 axios(config)
   .then(function (response) {
-    console.log(JSON.stringify(response.data));
+    response.data.results.forEach((element) => {
+      console.log(element.name);
+    });
   })
   .catch(function (error) {
     console.log(error);
