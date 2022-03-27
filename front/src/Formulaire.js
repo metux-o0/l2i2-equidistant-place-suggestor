@@ -159,30 +159,7 @@ function jourMax(dispo) {
   var tab_jour = [];
   for (var j = 0; j < 6; j++) {
     if (max === tab_dispo[j][1]) {
-      tab_jour.push(tab_dispo[j]);
-    }
-  }
-  for (var k = 0; k < tab_jour.length; k++) {
-    if (tab_jour[k][0] == "lundi") {
-      tab_jour[k] = prochain[0];
-    }
-    if (tab_jour[k][0] == "mardi") {
-      tab_jour[k] = prochain[1];
-    }
-    if (tab_jour[k][0] == "mercredi") {
-      tab_jour[k] = prochain[2];
-    }
-    if (tab_jour[k][0] == "jeudi") {
-      tab_jour[k] = prochain[3];
-    }
-    if (tab_jour[k][0] == "vendredi") {
-      tab_jour[k] = prochain[4];
-    }
-    if (tab_jour[k][0] == "samedi") {
-      tab_jour[k] = prochain[5];
-    }
-    if (tab_jour[k][0] == "dimanche") {
-      tab_jour[k] = prochain[6];
+      tab_jour.push(tab_dispo[j][0]);
     }
   }
   return tab_jour;
