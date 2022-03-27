@@ -1,31 +1,7 @@
-var express = require("express");
-var path = require("path");
-var app = express();
-const bodyParser = require("body-parser");
+var express = require('express');
+var router = express.Router();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../front/public")));
-
-const recoie = require('./nearby');
-const envoie=require('./reponse');
-
-app.use('/', recoie);
-app.use('/',envoie);
-
-
-/*app.post('/formulaire', (req, res) => {
-  const tab_pers = req.body.tab1;
-  const dateChoisie = req.body.dateChoisie;
-  console.log(req.body);
-  //lieu choisi
-  res.send('ok');
-});
-
-app.get('/carte', (req, res) => {
+router.get('/carte', async (req, res) => {
   res.send([
     {
       nom: 'Blandine',
@@ -64,8 +40,5 @@ app.get('/carte', (req, res) => {
     },
   ]);
 });
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front/public/index.html"));
-});*/
 
-module.exports = app;
+module.exports = router;
