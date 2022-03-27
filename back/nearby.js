@@ -13,7 +13,7 @@ router.post('/formulaire', async (req, res) => {
           48.8 +
           '%2C' +
           2.3 +
-          '&radius=1000&keyword=restaurant&pagetoken&type=restaurant&key=AIzaSyAgbMy2V7CQz70IiqR1jgiybeEmU6tnkNk'
+          '&radius=1000&keyword=restaurant&pagetoken&type=restaurant&key=key'
       )
       .then(function (response) {
         response.data.results.forEach((element) => {
