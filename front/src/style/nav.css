@@ -4,9 +4,9 @@ nav ul {
   text-align: center;
   margin: 25px 70px;
   padding: 10px 5px 10px 5px;
-  border-style: dashed none dashed none;
+  border-style: double;
   border-width: 5px;
-  border-color: rgb(44, 111, 143);
+  border-color: rgb(139, 83, 30);
   list-style-type: none;
 }
 nav li {
@@ -18,11 +18,11 @@ nav li {
 }
 #link {
   text-decoration: none;
-  color: black;
+  color: rgb(139, 83, 30);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }
 
 #link:hover {
-  background: linear-gradient(rgb(255, 255, 255), rgb(126, 79, 136));
+  background: linear-gradient(rgb(255, 255, 255), rgb(161, 122, 86));
 }

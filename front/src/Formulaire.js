@@ -254,7 +254,7 @@ function Formulaire() {
         />
         <br />
         <br />
-        <label id="case">Disponibilité :</label>
+        <label id="case">Disponibilités :</label>
         <br />
         <br />
         <input
@@ -263,7 +263,9 @@ function Formulaire() {
           name={prochain[0]}
           value={prochain[0]}
         />
-        <label htmlform={prochain[0]}>{prochainjn[0]}</label>
+        <label id="jour" htmlform={prochain[0]}>
+          {prochainjn[0]}
+        </label>
         <br />
         <input
           type="checkbox"
@@ -271,7 +273,9 @@ function Formulaire() {
           name={prochain[1]}
           value={prochain[1]}
         />
-        <label htmlform={prochain[1]}>{prochainjn[1]}</label>
+        <label id="jour" htmlform={prochain[1]}>
+          {prochainjn[1]}
+        </label>
         <br />
         <input
           type="checkbox"
@@ -279,7 +283,9 @@ function Formulaire() {
           name={prochain[2]}
           value={prochain[2]}
         />
-        <label htmlform={prochain[2]}>{prochainjn[2]}</label>
+        <label id="jour" htmlform={prochain[2]}>
+          {prochainjn[2]}
+        </label>
         <br />
         <input
           type="checkbox"
@@ -287,7 +293,9 @@ function Formulaire() {
           name={prochain[3]}
           value={prochain[3]}
         />
-        <label htmlform={prochain[3]}>{prochainjn[3]}</label>
+        <label id="jour" htmlform={prochain[3]}>
+          {prochainjn[3]}
+        </label>
         <br />
         <input
           type="checkbox"
@@ -295,7 +303,9 @@ function Formulaire() {
           name={prochain[4]}
           value={prochain[4]}
         />
-        <label htmlform={prochain[4]}>{prochainjn[4]}</label>
+        <label id="jour" htmlform={prochain[4]}>
+          {prochainjn[4]}
+        </label>
         <br />
         <input
           type="checkbox"
@@ -303,7 +313,9 @@ function Formulaire() {
           name={prochain[5]}
           value={prochain[5]}
         />
-        <label htmlform={prochain[5]}>{prochainjn[5]}</label>
+        <label id="jour" htmlform={prochain[5]}>
+          {prochainjn[5]}
+        </label>
         <br />
         <input
           type="checkbox"
@@ -311,7 +323,9 @@ function Formulaire() {
           name={prochain[6]}
           value={prochain[6]}
         />
-        <label htmlform={prochain[6]}>{prochainjn[6]}</label>
+        <label id="jour" htmlform={prochain[6]}>
+          {prochainjn[6]}
+        </label>
         <br />
         <button
           type="submit"
