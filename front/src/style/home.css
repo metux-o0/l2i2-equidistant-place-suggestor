@@ -7,3 +7,8 @@ div {
 h1 {
   color: rgb(139, 83, 30);
 }
+
+p {
+  background-attachment: scroll;
+  font-size: 17px;
+}

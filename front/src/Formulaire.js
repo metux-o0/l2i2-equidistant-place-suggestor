@@ -3,6 +3,8 @@ import { useState } from "react";
 import Autocomplete from "react-google-autocomplete";
 import Geocode from "react-geocode";
 import axios from "axios";
+import Maps from "./Maps";
+import { Route, Routes } from "react-router-dom";
 
 /**
  *
@@ -227,7 +229,7 @@ function Formulaire() {
     <div id="formulaire">
       <form onSubmit={envoieData}>
         <label id="case" htmlform="name">
-          Nom :
+          Nom
         </label>
         <input
           type="text"
@@ -238,7 +240,7 @@ function Formulaire() {
         />
         <br />
         <label id="case" htmlform="adr">
-          Adresse :
+          Adresse
         </label>
         <Autocomplete
           id="adr"
@@ -327,6 +329,8 @@ function Formulaire() {
           {prochainjn[6]}
         </label>
         <br />
+        <br />
+        <br />
         <button
           type="submit"
           value="Envoyer"
@@ -375,6 +379,7 @@ function Formulaire() {
             console.log(tab1[2].latlng);
             console.log(jourMax(dispo));
             dateChoisie = jourMax(dispo);
+            document.location.href = "/carte";
           }}
         >
           Envoyer
