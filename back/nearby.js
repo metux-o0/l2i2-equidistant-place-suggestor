@@ -1,21 +1,19 @@
-const router = require("express").Router();
-//const equi = require('../controllers/equidistance');
-const axios = require("axios");
-const key = process.env.REACT_APP_GOOGGLE_API_KEY;
+const router = require('express').Router();
+const express = require('express');
+const app = express();
+const axios = require('axios');
 
-router.post("/formulaire", async (req, res) => {
+
+router.post('/formulaire', async (req, res) => {
   var tab_pers = req.body.tab1;
-  const dateChoisie = req.body.dateChoisie;
+  var dateChoisi = req.body.dateChoisie;
+  console.log(req.body);
   const tab_lieu = [];
 
   try {
-    axios
+    await axios
       .get(
-        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
-          48.8 +
-          "%2C" +
-          2.3 +
-          "&radius=1000&keyword=restaurant&pagetoken&type=restaurant&key=key"
+        'https://data.iledefrance.fr/api/records/1.0/search/?dataset=base-de-donnees-patrimoine-gourmand-idf&q=&lang=fr&rows=2000&facet=commune&facet=code_departement&facet=deno&facet=activite&facet=produit&facet=sources&facet=classement'
       )
       .then(function (response) {
         response.data.results.forEach((element) => {
@@ -60,17 +58,23 @@ router.post("/formulaire", async (req, res) => {
           tab_pers.forEach((i) => {
             distancetotal += calculdistance(j, i);
           }),
-            distance_global.push([j.nom, distancetotal]),
-            (distancetotal = 0);
+            distance_global.push({
+              nom: j.nom,
+              adresse: j.adresse,
+              latlng: j.latlng,
+              distance: distancetotal,
+            });
+          distancetotal = 0;
         });
         var restau_choisie = 100;
         distance_global.forEach((Element) => {
-          if (Element[1] < restau_choisie) {
-            restau_choisie = Element[0];
+          if (Element.distance < restau_choisie) {
+            restau_choisie = Element;
           }
         });
-        console.log(distance_global);
-        console.log(restau_choisie);
+
+        tab_pers.push(restau_choisie);
+        res.send(restau_choisie);
       })
       .catch(function (error) {
         console.log(error);
@@ -78,6 +82,10 @@ router.post("/formulaire", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+router.get('/carte', (req, res) => {
+  res.send({ pers: tab_pers, restaurant: resto, date: dateChoisi });
 });
 
 module.exports = router;

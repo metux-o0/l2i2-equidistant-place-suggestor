@@ -166,7 +166,7 @@ function jourMax(dispo) {
 }
 
 function Formulaire() {
-  const [pin, setPin] = useState([]);
+  const [pin, setPin] = useState(1);
   const [nom, setNom] = useState("");
   const [adresse, setAdresse] = useState("");
   const [latlng, setLatlng] = useState({});
@@ -375,6 +375,7 @@ function Formulaire() {
             console.log(tab1[2].latlng);
             console.log(jourMax(dispo));
             dateChoisie = jourMax(dispo);
+            setPin(tab1.length);
           }}
         >
           Envoyer
@@ -429,6 +430,7 @@ function Formulaire() {
             }
             console.table(dispo);
             console.table(tab1);
+            setPin(tab1.length);
           }}
         >
           Ajouter
