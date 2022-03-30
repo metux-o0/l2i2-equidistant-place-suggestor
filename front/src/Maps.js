@@ -42,7 +42,7 @@ function Maps() {
         id="carte"
         mapContainerStyle={containerStyle}
         center={{ lat: 48.86380957985594, lng: 2.3443822975053807 }}
-        zoom={11}
+        zoom={12}
         onClick={(e) => {
           console.log(e);
         }}

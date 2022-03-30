@@ -20,6 +20,16 @@ function Nav() {
             Carte
           </Link>
         </li>
+        <li>
+          <Link
+            exact="true"
+            to="/contact"
+            activeclassname="nav_active"
+            id="link"
+          >
+            Contact
+          </Link>
+        </li>
       </ul>
     </nav>
   );

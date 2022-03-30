@@ -4,6 +4,7 @@ import Home from "./Home";
 import Header from "./Header";
 import Maps from "./Maps";
 import { Route, Routes } from "react-router-dom";
+import Contact from "./Contact";
 
 function App() {
   return (
@@ -14,7 +15,12 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/formulaire" element={<Formulaire />} />
         <Route path="/carte" element={<Maps />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <img
+        src="https://cdn.icon-icons.com/icons2/2249/PNG/512/map_marker_radius_outline_icon_139389.png"
+        id="logotest"
+      />
     </div>
   );
 }
