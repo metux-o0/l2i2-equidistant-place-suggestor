@@ -14,7 +14,6 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/formulaire" element={<Formulaire />} />
-        <Route path="/carte" element={<Maps />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <img

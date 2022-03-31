@@ -16,11 +16,6 @@ function Nav() {
           </Link>
         </li>
         <li>
-          <Link to="/carte" activeclassname="nav_active" id="link">
-            Carte
-          </Link>
-        </li>
-        <li>
           <Link
             exact="true"
             to="/contact"

@@ -11,10 +11,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../front/public")));
 
 const recoie = require('./nearby');
-const envoie=require('./reponse');
 
 app.use('/', recoie);
-app.use('/',envoie);
 
 
 /*app.post('/formulaire', (req, res) => {
