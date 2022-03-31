@@ -4,7 +4,6 @@ const axios = require('axios');
 
 router.post('/formulaire', async (req, res) => {
   var tab_pers = req.body.tab1;
-  var dateChoisi = req.body.dateChoisie;
   const tab_lieu = [];
 
   axios
@@ -80,10 +79,6 @@ router.post('/formulaire', async (req, res) => {
     .catch(function (error) {
       console.log(error);
     });
-});
-
-router.get('/carte', (req, res) => {
-  res.send({ pers: tab_pers, date: dateChoisi });
 });
 
 module.exports = router;
