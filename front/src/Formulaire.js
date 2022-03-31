@@ -415,6 +415,7 @@ function Formulaire() {
               <div>
                 <Marker
                   key={res.nom}
+                  label={res.nom}
                   position={{
                     lat: res.latlng.lat,
                     lng: res.latlng.lng,
