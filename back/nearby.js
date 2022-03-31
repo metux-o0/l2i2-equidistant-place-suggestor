@@ -15,7 +15,7 @@ router.post("/formulaire", async (req, res) => {
           48.8 +
           "%2C" +
           2.3 +
-          "&radius=1000&keyword=restaurant&pagetoken=[NEXT PAGE TOKEN GOES HERE]&type=restaurant&key=key"
+          "&radius=1000&keyword=restaurant&type=restaurant&key=key"
       )
       .then(function (response) {
         response.data.results.forEach((element) => {
@@ -78,6 +78,7 @@ router.post("/formulaire", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+  token = res.NextPageToken;
 });
 
 module.exports = router;
