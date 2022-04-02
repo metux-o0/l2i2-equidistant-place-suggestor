@@ -199,6 +199,7 @@ function Formulaire() {
       window.removeEventListener('submit', envoieData);
     };
   }, []);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -206,7 +207,7 @@ function Formulaire() {
   return isLoaded ? (
     <div id="page">
       <div id="formulaire">
-        <h2>Personne {pin}</h2>
+        <h2 id="personne">Personne {pin}</h2>
         <form>
           <label id="case" htmlform="name">
             Nom :
@@ -341,6 +342,8 @@ function Formulaire() {
               console.table(dispo);
               console.table(tab1);
               dateChoisie = jourMax(dispo);
+              setDatesDispo(dateChoisie);
+              
               setPin(tab1.length);
             }}
           >
@@ -396,6 +399,7 @@ function Formulaire() {
               }
               console.table(dispo);
               console.table(tab1);
+
               setPin(tab1.length);
             }}
           >
@@ -414,7 +418,6 @@ function Formulaire() {
             return (
               <div>
                 <Marker
-                  key={res.nom}
                   label={res.nom}
                   position={{
                     lat: res.latlng.lat,
@@ -426,7 +429,7 @@ function Formulaire() {
           })}
         </GoogleMap>
       </div>
-      <h4>Date Disponibilité : {dateChoisie}</h4>
+      <h4>Date Disponibilité : {datesDispo}</h4>
     </div>
   ) : (
     <></>
