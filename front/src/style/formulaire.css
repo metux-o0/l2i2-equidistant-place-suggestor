@@ -4,7 +4,6 @@ form,
 }
 
 div#formulaire {
-  float: left;
   display: block;
   width: 500px;
   height: 560px;
@@ -15,11 +14,11 @@ div#formulaire {
   border-style: inset;
   border-color: rgba(165, 131, 100, 0.8);
   border-width: 3px;
-  margin: 10px 400px 10px 50px;
+  margin: 10px 400px 10px 400px;
   font-size: 22px;
 }
 div#carte {
-  margin: 0px 0px 0px 690px;
+  margin: 100px 0px 0px 250px;
 }
 
 div {
@@ -49,7 +48,7 @@ button {
   margin: 5px;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   width: 20px;
@@ -63,27 +62,27 @@ input[type='checkbox'] {
   justify-content: center;
 }
 
-input[type='checkbox']:after {
-  font-family: 'Font Awesome 5 Free';
+input[type="checkbox"]:after {
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f00c';
+  content: "\f00c";
   font-size: 15px;
   color: #c08644;
   display: none;
 }
 
-input[type='checkbox']:hover {
+input[type="checkbox"]:hover {
   background-color: #59c044;
 }
-input[type='checkbox']:checked {
+input[type="checkbox"]:checked {
   background-color: #7a4507;
 }
 
-input[type='checkbox']:checked:after {
+input[type="checkbox"]:checked:after {
   display: block;
 }
 
-form [id='case'] {
+form [id="case"] {
   font-size: 22px;
   text-align: left;
 }
@@ -94,4 +93,8 @@ form [id='case'] {
 
 #personne {
   text-align: center;
+}
+#panel {
+  width: 350px;
+  margin: 0px 500px 0px 100px;
 }
