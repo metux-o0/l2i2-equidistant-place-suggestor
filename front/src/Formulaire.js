@@ -379,7 +379,6 @@ function Formulaire() {
             console.log(tab1[2].latlng);
             console.log(jourMax(dispo));
             dateChoisie = jourMax(dispo);
-            document.location.href = "/carte";
           }}
         >
           Envoyer
