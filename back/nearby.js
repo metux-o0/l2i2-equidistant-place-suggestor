@@ -6,7 +6,6 @@ router.post('/formulaire', async (req, res) => {
   var tab_pers = req.body.tab1;
   const tab_lieu = [];
 
-<<<<<<< HEAD
   axios
     .get(
       'https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=50&facet=type_d_etablissement'
@@ -20,27 +19,8 @@ router.post('/formulaire', async (req, res) => {
             lat: element.geometry.coordinates[1],
             lng: element.geometry.coordinates[0],
           },
-=======
-  try {
-    axios
-      .get(
-        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
-          48.8 +
-          "%2C" +
-          2.3 +
-          "&radius=1000&keyword=restaurant&type=restaurant&key=key"
-      )
-      .then(function (response) {
-        response.data.results.forEach((element) => {
-          tab_lieu.push({
-            nom: element.name,
-            adresse: element.vicinity,
-            latlng: element.geometry.location,
-          });
->>>>>>> 453e627893db98c34cf7ae2e3bb266b18c1da1d4
         });
       });
-<<<<<<< HEAD
       function toRad(valeur) {
         return (valeur * Math.PI) / 180;
       }
@@ -99,12 +79,6 @@ router.post('/formulaire', async (req, res) => {
     .catch(function (error) {
       console.log(error);
     });
-=======
-  } catch (err) {
-    console.log(err);
-  }
-  token = res.NextPageToken;
->>>>>>> 453e627893db98c34cf7ae2e3bb266b18c1da1d4
 });
 
 module.exports = router;
