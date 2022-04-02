@@ -343,7 +343,6 @@ function Formulaire() {
               console.table(tab1);
               dateChoisie = jourMax(dispo);
               setDatesDispo(dateChoisie);
-              
               setPin(tab1.length);
             }}
           >
@@ -399,7 +398,6 @@ function Formulaire() {
               }
               console.table(dispo);
               console.table(tab1);
-
               setPin(tab1.length);
             }}
           >
