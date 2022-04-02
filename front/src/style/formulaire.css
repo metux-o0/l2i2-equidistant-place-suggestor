@@ -95,6 +95,10 @@ form [id="case"] {
   text-align: center;
 }
 #panel {
-  width: 350px;
-  margin: 0px 500px 0px 100px;
+  width: 400px;
+  height: auto;
+  margin: 0px 500px 0px 80px;
+  background-color: #dfd8d1;
+  border-radius: 10px;
+  border-style: dotted;
 }
