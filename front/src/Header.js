@@ -4,7 +4,7 @@ function Header() {
   return (
     <div>
       <header>
-        <h1>Meet and Eat </h1>
+        <h1>Equi meet </h1>
       </header>
     </div>
   );
