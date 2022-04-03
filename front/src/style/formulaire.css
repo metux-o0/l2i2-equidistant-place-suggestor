@@ -54,6 +54,13 @@ button {
   cursor: pointer;
   margin: auto;
 }
+button:hover {
+  background-color: #bec044;
+}
+button[value="Envoyer"], button[value="Ajouter"]{
+  text-align: center;
+  margin: auto;
+}
 
 input[type="checkbox"] {
   appearance: none;
@@ -97,19 +104,8 @@ form [id="case"] {
   padding: 0px 0px 0px 10px;
   text-align: left;
 }
-button:hover {
-  background-color: #bec044;
-}
 
-button[value="Envoyer"] {
-  text-align: center;
-  margin: auto;
-}
 
-button[value="Ajouter"] {
-  text-align: center;
-  margin: auto;
-}
 #personne {
   text-align: center;
 }
