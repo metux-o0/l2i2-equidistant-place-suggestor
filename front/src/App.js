@@ -2,7 +2,6 @@ import Formulaire from "./Formulaire";
 import Nav from "./Navigateur";
 import Home from "./Home";
 import Header from "./Header";
-import Maps from "./Maps";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./Contact";
 

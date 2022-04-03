@@ -1,14 +1,12 @@
 import './style/formulaire.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import Geocode from 'react-geocode';
 import axios from 'axios';
 import {
   GoogleMap,
-  Marker,
   useJsApiLoader,
   DirectionsRenderer,
-  DirectionsService,
 } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -153,7 +151,7 @@ function Formulaire() {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [datesDispo, setDatesDispo] = useState([]);
-
+  const [resto, setResto] = useState([]);
   const [dispo] = useState([
     {
       lundi: 0,
@@ -172,12 +170,6 @@ function Formulaire() {
   const [directionResponse, setDirectionResponse] = useState([]);
   const [distance, setDistance] = useState([]);
   const [duree, setDuree] = useState([]);
-
-  const DirectionsServiceOption = {
-    destination: tab1[0].adresse,
-    origin: '54 rue Saint-André des Arts',
-    travelMode: 'TRANSIT',
-  };
 
   async function calculerRoute(adresse, restaurant) {
     //eslint-disable-next-line no-undef
@@ -220,7 +212,6 @@ function Formulaire() {
       }
     );
   }
-
   const envoieData = async (e) => {
     e.preventDefault();
     try {
@@ -231,6 +222,10 @@ function Formulaire() {
         })
         .then((response) => {
           setMarkers(response.data);
+          resto.push(response.data[response.data.length - 1].nom);
+          resto.push(response.data[response.data.length - 1].adresse);
+          resto.push(response.data[response.data.length - 1].specialite);
+          resto.push(response.data[response.data.length - 1].ouverture);
           for (var j = 0; j < response.data.length - 1; j++) {
             calculerRoute(
               response.data[j].adresse,
@@ -238,7 +233,6 @@ function Formulaire() {
             );
           }
           console.log(response.data);
-          console.log('envoyer');
         });
     } catch (e) {
       alert(e);
@@ -254,6 +248,7 @@ function Formulaire() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    //libraries: ['places'],
   });
   return isLoaded ? (
     <div id="page">
@@ -461,12 +456,22 @@ function Formulaire() {
           zoom={12}
         >
           {directionResponse.map((res, index) => {
-            return <DirectionsRenderer directions={res} />;
+            return <DirectionsRenderer directions={res} label={'ok'} />;
           })}
-          
         </GoogleMap>
       </div>
-      <h4>Date Disponibilité : {datesDispo}</h4>
+      <h4 id="dispo">Date Disponibilité : </h4>
+      {datesDispo.map((res, index) => {
+        return <h4 id="dispo_jour">{datesDispo[index]}</h4>;
+      })}
+      <br />
+      <div id="restaurant">
+        <h3>{resto[0]}</h3>
+        <hr></hr>
+        <h4>{resto[1]}</h4>
+        <h4>Spécialité : {resto[2]}</h4>
+        <h4>Ouverture : {resto[3]}</h4>
+      </div>
       <br />
       <div id="panel"></div>
     </div>
@@ -474,5 +479,4 @@ function Formulaire() {
     <></>
   );
 }
-
 export default Formulaire;
