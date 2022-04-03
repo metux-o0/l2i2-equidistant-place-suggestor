@@ -19,7 +19,7 @@ div#formulaire {
   block-size: 650px;
 }
 div#carte {
-  margin: 100px 0px 0px 250px;
+  margin: 100px 0px 0px 305px;
 }
 
 div {
@@ -55,7 +55,7 @@ button {
   margin: auto;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   width: 20px;
@@ -69,26 +69,26 @@ input[type='checkbox'] {
   justify-content: center;
 }
 
-input[type='checkbox']:after {
-  font-family: 'Font Awesome 5 Free';
+input[type="checkbox"]:after {
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 15px;
   color: #c08644;
   display: none;
 }
 
-input[type='checkbox']:hover {
+input[type="checkbox"]:hover {
   background-color: #bec044;
 }
-input[type='checkbox']:checked {
+input[type="checkbox"]:checked {
   background-color: #7a4507;
 }
 
-input[type='checkbox']:checked:after {
+input[type="checkbox"]:checked:after {
   display: block;
 }
 
-form [id='case'] {
+form [id="case"] {
   font-size: 22px;
   text-align: left;
 }
@@ -101,12 +101,12 @@ button:hover {
   background-color: #bec044;
 }
 
-button[value='Envoyer'] {
+button[value="Envoyer"] {
   text-align: center;
   margin: auto;
 }
 
-button[value='Ajouter'] {
+button[value="Ajouter"] {
   text-align: center;
   margin: auto;
 }
