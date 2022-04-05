@@ -5,29 +5,142 @@ const axios = require('axios');
 router.post('/formulaire', async (req, res) => {
   var tab_pers = req.body.tab1;
   var dateChoisi = req.body.dateChoisie;
+  var activite = 'sport';
   const tab_lieu = [];
 
+  if (activite === 'restaurant') {
+    url =
+      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=280&facet=type_d_etablissement';
+  } else if (activite === 'sport') {
+    url =
+      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=iles_de_loisirs_idf&q=&rows=211&facet=ile_de_loisir&facet=departement&facet=titre';
+  } else {
+    url =
+      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=principaux-sites-touristiques-en-ile-de-france0&q=&rows=672';
+  }
   axios
-    .get(
-      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=280&facet=type_d_etablissement'
-    )
+    .get(url)
     .then(function (response) {
-      response.data.records.forEach((element) => {
-        if (element.fields.nom_de_l_etablissement != 'LAVINIA') {
+      var distance_global = [];
+      var distancetotal = 0;
+      var distances = [];
+
+      if (activite === 'restaurant') {
+        response.data.records.forEach((element) => {
+          if (element.fields.nom_de_l_etablissement != 'LAVINIA') {
+            tab_lieu.push({
+              nom: element.fields.nom_de_l_etablissement,
+              adresse: element.fields.adresse_de_l_etablissement,
+              latlng: {
+                lat: element.geometry.coordinates[1],
+                lng: element.geometry.coordinates[0],
+              },
+              specialite: element.fields.specialite_culinaire,
+              ouverture:
+                element.fields
+                  .horaires_d_ouverture_et_de_fermeture_de_l_etablissement,
+            });
+          }
+        });
+        tab_lieu.forEach((j) => {
+          var equi = true;
+          tab_pers.forEach((i) => {
+            if (!isNaN(calculdistance(j, i))) {
+              distancetotal += calculdistance(j, i);
+              distances.push(calculdistance(j, i));
+            }
+          });
+          distances.forEach((k) => {
+            if (k - (k + 1) > 5) {
+              equi = false;
+            }
+          });
+          if (equi) {
+            distance_global.push({
+              nom: j.nom,
+              adresse: j.adresse,
+              latlng: j.latlng,
+              specialite: j.specialite,
+              ouverture: j.ouverture,
+              distance: distancetotal,
+            });
+          }
+          distances = [];
+          distancetotal = 0;
+        });
+      } else if (activite === 'sport') {
+        response.data.records.forEach((element) => {
           tab_lieu.push({
-            nom: element.fields.nom_de_l_etablissement,
-            adresse: element.fields.adresse_de_l_etablissement,
+            nom: element.fields.titre,
+            adresse: element.fields.departement,
             latlng: {
               lat: element.geometry.coordinates[1],
               lng: element.geometry.coordinates[0],
             },
-            specialite: element.fields.specialite_culinaire,
-            ouverture:
-              element.fields
-                .horaires_d_ouverture_et_de_fermeture_de_l_etablissement,
           });
-        }
-      });
+        });
+        tab_lieu.forEach((j) => {
+          var equi = true;
+          tab_pers.forEach((i) => {
+            if (!isNaN(calculdistance(j, i))) {
+              distancetotal += calculdistance(j, i);
+              distances.push(calculdistance(j, i));
+            }
+          });
+          distances.forEach((k) => {
+            if (k - (k + 1) > 5) {
+              equi = false;
+            }
+          });
+          if (equi) {
+            distance_global.push({
+              nom: j.nom,
+              adresse: j.adresse,
+              latlng: j.latlng,
+              distance: distancetotal,
+            });
+          }
+          distances = [];
+          distancetotal = 0;
+        });
+      } else {
+        response.data.records.forEach((element) => {
+          tab_lieu.push({
+            nom: element.fields.nom_carto,
+            adresse: element.fields.adresse,
+            latlng: {
+              lat: element.geometry.coordinates[1],
+              lng: element.geometry.coordinates[0],
+            },
+            type: element.fields.typo_niv3,
+          });
+        });
+        tab_lieu.forEach((j) => {
+          var equi = true;
+          tab_pers.forEach((i) => {
+            if (!isNaN(calculdistance(j, i))) {
+              distancetotal += calculdistance(j, i);
+              distances.push(calculdistance(j, i));
+            }
+          });
+          distances.forEach((k) => {
+            if (k - (k + 1) > 5) {
+              equi = false;
+            }
+          });
+          if (equi) {
+            distance_global.push({
+              nom: j.nom,
+              adresse: j.adresse,
+              latlng: j.latlng,
+              type: j.type,
+              distance: distancetotal,
+            });
+          }
+          distances = [];
+          distancetotal = 0;
+        });
+      }
 
       function toRad(valeur) {
         return (valeur * Math.PI) / 180;
@@ -57,36 +170,6 @@ router.post('/formulaire', async (req, res) => {
         return d;
       }
 
-      var distance_global = [];
-      var distancetotal = 0;
-      var distances = [];
-
-      tab_lieu.forEach((j) => {
-        var equi = true;
-        tab_pers.forEach((i) => {
-          if (!isNaN(calculdistance(j, i))) {
-            distancetotal += calculdistance(j, i);
-            distances.push(calculdistance(j, i));
-          }
-        });
-        distances.forEach((k) => {
-          if (k - (k + 1) > 5) {
-            equi = false;
-          }
-        });
-        if (equi) {
-          distance_global.push({
-            nom: j.nom,
-            adresse: j.adresse,
-            latlng: j.latlng,
-            specialite: j.specialite,
-            ouverture: j.ouverture,
-            distance: distancetotal,
-          });
-        }
-        distances = [];
-        distancetotal = 0;
-      });
       var restau_choisie = distance_global[0];
 
       distance_global.forEach((Element) => {
