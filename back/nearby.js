@@ -1,14 +1,14 @@
-const router = require('express').Router();
-const express = require('express');
-const axios = require('axios');
+const router = require("express").Router();
+const express = require("express");
+const axios = require("axios");
 
-router.post('/formulaire', async (req, res) => {
+router.post("/formulaire", async (req, res) => {
   var tab_pers = req.body.tab1;
   const tab_lieu = [];
 
   axios
     .get(
-      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=50&facet=type_d_etablissement'
+      "https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=50&facet=type_d_etablissement"
     )
     .then(function (response) {
       response.data.records.forEach((element) => {
@@ -21,6 +21,7 @@ router.post('/formulaire', async (req, res) => {
           },
         });
       });
+
       function toRad(valeur) {
         return (valeur * Math.PI) / 180;
       }
