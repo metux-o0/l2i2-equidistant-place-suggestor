@@ -1,12 +1,14 @@
 import './style/formulaire.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import Geocode from 'react-geocode';
 import axios from 'axios';
 import {
   GoogleMap,
+  Marker,
   useJsApiLoader,
   DirectionsRenderer,
+  DirectionsService,
 } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -114,13 +116,7 @@ const prochain_jour = () => {
 const prochainjn = prochain_jour_numero();
 const prochain = prochain_jour();
 
-var tab1 = [
-  {
-    nom: 'Université',
-    adresse: '45 Rue des Saints-Pères',
-    latlng: { lat: 48.85522290905313, lng: 2.3319466418882806 },
-  },
-];
+var tab1 = [];
 
 function jourMax(dispo) {
   var tab_dispo = Object.keys(dispo[0]).map(function (key) {
@@ -166,7 +162,6 @@ function Formulaire() {
   var dateChoisie;
   const data = { nom, adresse, latlng };
 
-  //Pour la direction
   const [directionResponse, setDirectionResponse] = useState([]);
   const [distance, setDistance] = useState([]);
   const [duree, setDuree] = useState([]);
@@ -177,8 +172,8 @@ function Formulaire() {
     //eslint-disable-next-line no-undef
     const directionService = new google.maps.DirectionsService();
     const result = await directionService.route({
-      origin: adresse,
-      destination: restaurant,
+      origin: adresse.adresse,
+      destination: restaurant.adresse,
       //eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.TRANSIT,
     });
@@ -189,6 +184,7 @@ function Formulaire() {
         return directionResponse.indexOf(ele) === pos;
       })
     );
+
     distance.push(result.routes[0].legs[0].distance.text);
     duree.push(result.routes[0].legs[0].duration.text);
     delete result.routes[0].warnings;
@@ -228,8 +224,8 @@ function Formulaire() {
           resto.push(response.data[response.data.length - 1].ouverture);
           for (var j = 0; j < response.data.length - 1; j++) {
             calculerRoute(
-              response.data[j].adresse,
-              response.data[response.data.length - 1].adresse
+              response.data[j],
+              response.data[response.data.length - 1]
             );
           }
           console.log(response.data);
@@ -244,6 +240,13 @@ function Formulaire() {
       window.removeEventListener('submit', envoieData);
     };
   });
+
+  //eslint-disable-next-line no-undef
+  var sw = new google.maps.LatLng(48.42685436617363, 1.7682491688387136);
+  //eslint-disable-next-line no-undef
+  var ne = new google.maps.LatLng(49.152560974910976, 3.1150388469918466);
+  //eslint-disable-next-line no-undef
+  var bound = new google.maps.LatLngBounds(sw, ne);
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -278,7 +281,8 @@ function Formulaire() {
             }}
             options={{
               componentRestrictions: { country: 'fr' },
-              types: ['geocode', 'establishment'],
+              types: ['address'],
+              bounds: bound,
             }}
           />
           <br />
@@ -456,7 +460,35 @@ function Formulaire() {
           zoom={12}
         >
           {directionResponse.map((res, index) => {
-            return <DirectionsRenderer directions={res} label={'ok'} />;
+            console.log(res);
+            return (
+              <DirectionsRenderer
+                directions={res}
+                options={{
+                  polylineOptions: {
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 4,
+                  },
+                  icon: { scale: 3 },
+                  markerOptions: {
+                    icon: ' ',
+                  },
+                }}
+              />
+            );
+          })}
+          {markers.map((res, index) => {
+            return (
+              <div>
+                <Marker
+                  id="marker"
+                  key={index}
+                  position={res.latlng}
+                  label={res.nom}
+                />
+              </div>
+            );
           })}
         </GoogleMap>
       </div>

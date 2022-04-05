@@ -1,6 +1,6 @@
 form,
 #boutton {
-  margin: 10px;
+  margin: 20px 70px;
 }
 
 div#formulaire {
@@ -27,14 +27,16 @@ div {
 }
 
 #adr {
-  padding: 6px 50px;
   text-align: center;
+  border-radius: 10px;
+  padding: 6px 50px;
   margin: 6px;
 }
 #name {
-  padding: 6px 50px;
   text-align: center;
-  margin: 35px;
+  border-radius: 10px;
+  padding: 6px 50px;
+  margin: 20px;
 }
 
 button {
@@ -46,7 +48,7 @@ button {
   text-align: center;
   font-size: 15px;
   padding: 15px;
-  width: 100px;
+  width: 130px;
   /*-webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -57,12 +59,14 @@ button {
 button:hover {
   background-color: #bec044;
 }
-button[value="Envoyer"], button[value="Ajouter"]{
+
+button[value='Envoyer'],
+button[value='Ajouter'] {
   text-align: center;
   margin: auto;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   appearance: none;
   -webkit-appearance: none;
   width: 20px;
@@ -76,27 +80,28 @@ input[type="checkbox"] {
   justify-content: center;
 }
 
-input[type="checkbox"]:after {
-  font-family: "Font Awesome 5 Free";
+input[type='checkbox']:after {
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   font-size: 15px;
   color: #c08644;
   display: none;
 }
 
-input[type="checkbox"]:hover {
+input[type='checkbox']:hover {
   background-color: #bec044;
 }
-input[type="checkbox"]:checked {
+input[type='checkbox']:checked {
   background-color: #7a4507;
 }
 
-input[type="checkbox"]:checked:after {
+input[type='checkbox']:checked:after {
   display: block;
 }
 
-form [id="case"] {
+form [id='case'] {
   font-size: 22px;
+  font-weight: bold;
   text-align: left;
 }
 
@@ -104,7 +109,6 @@ form [id="case"] {
   padding: 0px 0px 0px 10px;
   text-align: left;
 }
-
 
 #personne {
   text-align: center;
@@ -135,4 +139,8 @@ form [id="case"] {
   height: 0px;
   padding: 10px 10px;
   margin: 0px 780px 0px 1px;
+}
+
+#marker {
+  font-weight: bold;
 }
