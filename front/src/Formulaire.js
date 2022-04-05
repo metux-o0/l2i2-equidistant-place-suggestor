@@ -1,19 +1,19 @@
-import './style/formulaire.css';
-import { useState, useEffect, useRef } from 'react';
-import Autocomplete from 'react-google-autocomplete';
-import Geocode from 'react-geocode';
-import axios from 'axios';
+import "./style/formulaire.css";
+import { useState, useEffect, useRef } from "react";
+import Autocomplete from "react-google-autocomplete";
+import Geocode from "react-geocode";
+import axios from "axios";
 import {
   GoogleMap,
   Marker,
   useJsApiLoader,
   DirectionsRenderer,
   DirectionsService,
-} from '@react-google-maps/api';
+} from "@react-google-maps/api";
 
 const containerStyle = {
-  width: '600px',
-  height: '500px',
+  width: "600px",
+  height: "500px",
 };
 
 const prochain_jour_numero = () => {
@@ -27,60 +27,60 @@ const prochain_jour_numero = () => {
   let jour = null;
   let mois = null;
   for (let i = 0; i < 7; i++) {
-    if (array[i].substring(0, 3) === 'Mon') {
-      jour = 'Lundi';
-    } else if (array[i].substring(0, 3) === 'Tue') {
-      jour = 'Mardi';
-    } else if (array[i].substring(0, 3) === 'Wed') {
-      jour = 'Mercredi';
-    } else if (array[i].substring(0, 3) === 'Thu') {
-      jour = 'Jeudi';
-    } else if (array[i].substring(0, 3) === 'Fri') {
-      jour = 'Vendredi';
-    } else if (array[i].substring(0, 3) === 'Sat') {
-      jour = 'Samedi';
-    } else if (array[i].substring(0, 3) === 'Sun') {
-      jour = 'Dimanche';
+    if (array[i].substring(0, 3) === "Mon") {
+      jour = "Lundi";
+    } else if (array[i].substring(0, 3) === "Tue") {
+      jour = "Mardi";
+    } else if (array[i].substring(0, 3) === "Wed") {
+      jour = "Mercredi";
+    } else if (array[i].substring(0, 3) === "Thu") {
+      jour = "Jeudi";
+    } else if (array[i].substring(0, 3) === "Fri") {
+      jour = "Vendredi";
+    } else if (array[i].substring(0, 3) === "Sat") {
+      jour = "Samedi";
+    } else if (array[i].substring(0, 3) === "Sun") {
+      jour = "Dimanche";
     }
 
     switch (array[i].substring(4, 7)) {
-      case 'Jan':
-        mois = 'Janvier';
+      case "Jan":
+        mois = "Janvier";
         break;
-      case 'Feb':
-        mois = 'Février';
+      case "Feb":
+        mois = "Février";
         break;
-      case 'Mar':
-        mois = 'Mars';
+      case "Mar":
+        mois = "Mars";
         break;
-      case 'Apr':
-        mois = 'Avril';
+      case "Apr":
+        mois = "Avril";
         break;
-      case 'May':
-        mois = 'Mai';
+      case "May":
+        mois = "Mai";
         break;
-      case 'Jun':
-        mois = 'Juin';
+      case "Jun":
+        mois = "Juin";
         break;
-      case 'Jul':
-        mois = 'Juillet';
+      case "Jul":
+        mois = "Juillet";
         break;
-      case 'Aug':
-        mois = 'Aout';
+      case "Aug":
+        mois = "Aout";
         break;
-      case 'Sep':
-        mois = 'Septembre';
+      case "Sep":
+        mois = "Septembre";
         break;
-      case 'Oct':
-        mois = 'Octobre';
+      case "Oct":
+        mois = "Octobre";
         break;
-      case 'Nov':
-        mois = 'Novembre';
+      case "Nov":
+        mois = "Novembre";
         break;
       default:
-        mois = 'Décembre';
+        mois = "Décembre";
     }
-    array_jour.push(jour + ' ' + array[i].substring(8, 10) + ' ' + mois);
+    array_jour.push(jour + " " + array[i].substring(8, 10) + " " + mois);
   }
   return array_jour;
 };
@@ -94,20 +94,20 @@ const prochain_jour = () => {
   const array_jour = [];
   let jour = null;
   for (let i = 0; i < 7; i++) {
-    if (array[i].substring(0, 3) === 'Mon') {
-      jour = 'Lundi';
-    } else if (array[i].substring(0, 3) === 'Tue') {
-      jour = 'Mardi';
-    } else if (array[i].substring(0, 3) === 'Wed') {
-      jour = 'Mercredi';
-    } else if (array[i].substring(0, 3) === 'Thu') {
-      jour = 'Jeudi';
-    } else if (array[i].substring(0, 3) === 'Fri') {
-      jour = 'Vendredi';
-    } else if (array[i].substring(0, 3) === 'Sat') {
-      jour = 'Samedi';
-    } else if (array[i].substring(0, 3) === 'Sun') {
-      jour = 'Dimanche';
+    if (array[i].substring(0, 3) === "Mon") {
+      jour = "Lundi";
+    } else if (array[i].substring(0, 3) === "Tue") {
+      jour = "Mardi";
+    } else if (array[i].substring(0, 3) === "Wed") {
+      jour = "Mercredi";
+    } else if (array[i].substring(0, 3) === "Thu") {
+      jour = "Jeudi";
+    } else if (array[i].substring(0, 3) === "Fri") {
+      jour = "Vendredi";
+    } else if (array[i].substring(0, 3) === "Sat") {
+      jour = "Samedi";
+    } else if (array[i].substring(0, 3) === "Sun") {
+      jour = "Dimanche";
     }
     array_jour.push(jour.toLowerCase());
   }
@@ -141,9 +141,9 @@ function jourMax(dispo) {
 
 function Formulaire() {
   const [pin, setPin] = useState(1);
-  const [nom, setNom] = useState('');
-  const [adresse, setAdresse] = useState('');
-  const [activite, setActivite] = useState('');
+  const [nom, setNom] = useState("");
+  const [adresse, setAdresse] = useState("");
+  const [activite, setActivite] = useState("");
   const [latlng, setLatlng] = useState({});
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
@@ -191,7 +191,7 @@ function Formulaire() {
     delete result.routes[0].warnings;
     delete result.routes[0].copyrights;
     directionRender.setDirections(result);
-    directionRender.setPanel(document.getElementById('panel'));
+    directionRender.setPanel(document.getElementById("panel"));
     console.log(directionResponse);
   }
 
@@ -213,7 +213,7 @@ function Formulaire() {
     e.preventDefault();
     try {
       const res = await axios
-        .post('http://localhost:3000/formulaire', {
+        .post("http://localhost:3000/formulaire", {
           tab1,
           dateChoisie,
         })
@@ -236,9 +236,9 @@ function Formulaire() {
     }
   };
   useEffect(() => {
-    window.addEventListener('submit', envoieData);
+    window.addEventListener("submit", envoieData);
     return () => {
-      window.removeEventListener('submit', envoieData);
+      window.removeEventListener("submit", envoieData);
     };
   });
 
@@ -250,7 +250,7 @@ function Formulaire() {
   var bound = new google.maps.LatLngBounds(sw, ne);
 
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     //libraries: ['places'],
   });
@@ -281,8 +281,8 @@ function Formulaire() {
               setAdresse(place.formatted_address);
             }}
             options={{
-              componentRestrictions: { country: 'fr' },
-              types: ['address'],
+              componentRestrictions: { country: "fr" },
+              types: ["address"],
               bounds: bound,
             }}
           />
@@ -291,12 +291,15 @@ function Formulaire() {
           <div id="activite">
             <label>Type d'activité :</label>
             <br />
-            <label htmlFor="restaurant">Restaurant</label>
+            <br />
             <input type="checkbox" id="act" value="restaurant" />
-            <label htmlFor="sport">Sport</label>
+            <label htmlFor="restaurant">Restaurant</label>
+            <br />
             <input type="checkbox" id="act" value="sport" />
-            <label htmlFor="visite">Visite</label>
+            <label htmlFor="sport">Sport</label>
+            <br />
             <input type="checkbox" id="act" value="visite" />
+            <label htmlFor="visite">Visite</label>
           </div>
           <label id="case">Disponibilité :</label>
           <br />
@@ -363,24 +366,24 @@ function Formulaire() {
             id="boutton"
             onClick={() => {
               tab1.push(data);
-              document.getElementById('name').value = '';
-              document.getElementById('adr').value = '';
+              document.getElementById("name").value = "";
+              document.getElementById("adr").value = "";
               var semaine = document.querySelectorAll('input[id="case1"]');
               const prochain1 = prochain_jour();
               const verification = (jour) => {
-                if (jour === 'lundi') {
+                if (jour === "lundi") {
                   dispo[0].lundi++;
-                } else if (jour === 'mardi') {
+                } else if (jour === "mardi") {
                   dispo[0].mardi++;
-                } else if (jour === 'mercredi') {
+                } else if (jour === "mercredi") {
                   dispo[0].mercredi++;
-                } else if (jour === 'jeudi') {
+                } else if (jour === "jeudi") {
                   dispo[0].jeudi++;
-                } else if (jour === 'vendredi') {
+                } else if (jour === "vendredi") {
                   dispo[0].vendredi++;
-                } else if (jour === 'samedi') {
+                } else if (jour === "samedi") {
                   dispo[0].samedi++;
-                } else if (jour === 'dimanche') {
+                } else if (jour === "dimanche") {
                   dispo[0].dimanche++;
                 }
               };
@@ -403,7 +406,7 @@ function Formulaire() {
 
               var activites = document.querySelectorAll('input[id="act"]');
               if (activites[0].checked === true) {
-                console.log('okk');
+                console.log("okk");
                 setActivite(activites[0].value);
               } else if (activites[1].checked === true) {
                 setActivite(activites[1].value);
@@ -426,24 +429,24 @@ function Formulaire() {
             id="boutton"
             onClick={() => {
               tab1.push(data);
-              document.getElementById('name').value = '';
-              document.getElementById('adr').value = '';
+              document.getElementById("name").value = "";
+              document.getElementById("adr").value = "";
               var semaine = document.querySelectorAll('input[id="case1"]');
               const prochain1 = prochain_jour();
               const verification = (jour) => {
-                if (jour === 'lundi') {
+                if (jour === "lundi") {
                   dispo[0].lundi++;
-                } else if (jour === 'mardi') {
+                } else if (jour === "mardi") {
                   dispo[0].mardi++;
-                } else if (jour === 'mercredi') {
+                } else if (jour === "mercredi") {
                   dispo[0].mercredi++;
-                } else if (jour === 'jeudi') {
+                } else if (jour === "jeudi") {
                   dispo[0].jeudi++;
-                } else if (jour === 'vendredi') {
+                } else if (jour === "vendredi") {
                   dispo[0].vendredi++;
-                } else if (jour === 'samedi') {
+                } else if (jour === "samedi") {
                   dispo[0].samedi++;
-                } else if (jour === 'dimanche') {
+                } else if (jour === "dimanche") {
                   dispo[0].dimanche++;
                 }
               };
@@ -489,13 +492,13 @@ function Formulaire() {
                 directions={res}
                 options={{
                   polylineOptions: {
-                    strokeColor: '#FF0000',
+                    strokeColor: "#FF0000",
                     strokeOpacity: 0.5,
                     strokeWeight: 4,
                   },
                   icon: { scale: 3 },
                   markerOptions: {
-                    icon: ' ',
+                    icon: " ",
                   },
                 }}
               />

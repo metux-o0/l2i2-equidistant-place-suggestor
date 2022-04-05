@@ -12,3 +12,39 @@ p {
   background-attachment: scroll;
   font-size: 17px;
 }
+
+#slogan {
+  min-height: 60px;
+  /*padding: 10px 40px 50px 50px;*/
+  font: 1em/150% sans-serif;
+  font-size: 20px;
+  position: relative;
+  background-color: rgba(165, 131, 100, 0.8);
+  margin: 0px 300px 0px 300px;
+}
+
+#slogan::before {
+  position: absolute;
+  height: 3rem;
+  font: 6rem/100% Georgia, "Times New Roman", Times, serif;
+  content: "“";
+  top: 0.3rem;
+  left: 0.9rem;
+}
+
+#slogan::after {
+  position: absolute;
+  height: 3rem;
+  font: 6rem/100% Georgia, "Times New Roman", Times, serif;
+  content: "”";
+  bottom: 0.3rem;
+  right: 0.8rem;
+}
+
+i {
+  display: block;
+  font-size: 20px;
+  margin-top: 10px;
+  font-style: italic;
+  text-align: right;
+}

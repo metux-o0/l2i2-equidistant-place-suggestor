@@ -60,13 +60,13 @@ button:hover {
   background-color: #bec044;
 }
 
-button[value='Envoyer'],
-button[value='Ajouter'] {
+button[value="Envoyer"],
+button[value="Ajouter"] {
   text-align: center;
   margin: auto;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   width: 20px;
@@ -80,26 +80,26 @@ input[type='checkbox'] {
   justify-content: center;
 }
 
-input[type='checkbox']:after {
-  font-family: 'Font Awesome 5 Free';
+input[type="checkbox"]:after {
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 15px;
   color: #c08644;
   display: none;
 }
 
-input[type='checkbox']:hover {
+input[type="checkbox"]:hover {
   background-color: #bec044;
 }
-input[type='checkbox']:checked {
+input[type="checkbox"]:checked {
   background-color: #7a4507;
 }
 
-input[type='checkbox']:checked:after {
+input[type="checkbox"]:checked:after {
   display: block;
 }
 
-form [id='case'] {
+form [id="case"] {
   font-size: 22px;
   font-weight: bold;
   text-align: left;
@@ -120,7 +120,7 @@ form [id='case'] {
   margin: 0px 500px 0px 80px;
   background-color: #dfd8d1;
   border-radius: 10px;
-  border-style: dotted;
+  border-style: solid;
 }
 
 #restaurant {
@@ -129,7 +129,7 @@ form [id='case'] {
   margin: 20px 500px 0px 80px;
   background-color: #dfd8d1;
   border-radius: 10px;
-  border-style: dotted;
+  border-style: solid;
 }
 
 #dispo {
@@ -139,8 +139,20 @@ form [id='case'] {
   height: 0px;
   padding: 10px 10px;
   margin: 0px 780px 0px 1px;
+  display: flex;
 }
 
 #marker {
   font-weight: bold;
+}
+
+#activite {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: right;
+  display: flex;
+}
+
+#h3 {
+  color: #c08644;
 }

@@ -1,22 +1,22 @@
-const router = require('express').Router();
-const express = require('express');
-const axios = require('axios');
+const router = require("express").Router();
+const express = require("express");
+const axios = require("axios");
 
-router.post('/formulaire', async (req, res) => {
+router.post("/formulaire", async (req, res) => {
   var tab_pers = req.body.tab1;
   var dateChoisi = req.body.dateChoisie;
-  var activite = 'sport';
+  var activite = "restaurant";
   const tab_lieu = [];
 
-  if (activite === 'restaurant') {
+  if (activite === "restaurant") {
     url =
-      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=280&facet=type_d_etablissement';
-  } else if (activite === 'sport') {
+      "https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=280&facet=type_d_etablissement";
+  } else if (activite === "sport") {
     url =
-      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=iles_de_loisirs_idf&q=&rows=211&facet=ile_de_loisir&facet=departement&facet=titre';
+      "https://data.iledefrance.fr/api/records/1.0/search/?dataset=iles_de_loisirs_idf&q=&rows=211&facet=ile_de_loisir&facet=departement&facet=titre";
   } else {
     url =
-      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=principaux-sites-touristiques-en-ile-de-france0&q=&rows=672';
+      "https://data.iledefrance.fr/api/records/1.0/search/?dataset=principaux-sites-touristiques-en-ile-de-france0&q=&rows=672";
   }
   axios
     .get(url)
@@ -25,9 +25,9 @@ router.post('/formulaire', async (req, res) => {
       var distancetotal = 0;
       var distances = [];
 
-      if (activite === 'restaurant') {
+      if (activite === "restaurant") {
         response.data.records.forEach((element) => {
-          if (element.fields.nom_de_l_etablissement != 'LAVINIA') {
+          if (element.fields.nom_de_l_etablissement != "LAVINIA") {
             tab_lieu.push({
               nom: element.fields.nom_de_l_etablissement,
               adresse: element.fields.adresse_de_l_etablissement,
@@ -68,7 +68,7 @@ router.post('/formulaire', async (req, res) => {
           distances = [];
           distancetotal = 0;
         });
-      } else if (activite === 'sport') {
+      } else if (activite === "sport") {
         response.data.records.forEach((element) => {
           tab_lieu.push({
             nom: element.fields.titre,

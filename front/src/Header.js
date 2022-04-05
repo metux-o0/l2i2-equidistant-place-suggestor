@@ -1,10 +1,11 @@
 import "./style/Header.css";
-
+import Nav from "./Navigateur";
 function Header() {
   return (
     <div>
       <header>
-        <h1>Equi meet </h1>
+        <h1>Equi Meet </h1>
+        <Nav />
       </header>
     </div>
   );
