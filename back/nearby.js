@@ -1,25 +1,32 @@
-const router = require("express").Router();
-const express = require("express");
-const axios = require("axios");
+const router = require('express').Router();
+const express = require('express');
+const axios = require('axios');
 
-router.post("/formulaire", async (req, res) => {
+router.post('/formulaire', async (req, res) => {
   var tab_pers = req.body.tab1;
+  var dateChoisi = req.body.dateChoisie;
   const tab_lieu = [];
 
   axios
     .get(
-      "https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=50&facet=type_d_etablissement"
+      'https://data.iledefrance.fr/api/records/1.0/search/?dataset=lile-de-france-fete-ses-restos&q=&lang=fr&rows=280&facet=type_d_etablissement'
     )
     .then(function (response) {
       response.data.records.forEach((element) => {
-        tab_lieu.push({
-          nom: element.fields.nom_de_l_etablissement,
-          adresse: element.fields.adresse_de_l_etablissement,
-          latlng: {
-            lat: element.geometry.coordinates[1],
-            lng: element.geometry.coordinates[0],
-          },
-        });
+        if (element.fields.nom_de_l_etablissement != 'LAVINIA') {
+          tab_lieu.push({
+            nom: element.fields.nom_de_l_etablissement,
+            adresse: element.fields.adresse_de_l_etablissement,
+            latlng: {
+              lat: element.geometry.coordinates[1],
+              lng: element.geometry.coordinates[0],
+            },
+            specialite: element.fields.specialite_culinaire,
+            ouverture:
+              element.fields
+                .horaires_d_ouverture_et_de_fermeture_de_l_etablissement,
+          });
+        }
       });
 
       function toRad(valeur) {
@@ -52,29 +59,44 @@ router.post("/formulaire", async (req, res) => {
 
       var distance_global = [];
       var distancetotal = 0;
+      var distances = [];
 
       tab_lieu.forEach((j) => {
+        var equi = true;
         tab_pers.forEach((i) => {
           if (!isNaN(calculdistance(j, i))) {
             distancetotal += calculdistance(j, i);
+            distances.push(calculdistance(j, i));
           }
-        }),
+        });
+        distances.forEach((k) => {
+          if (k - (k + 1) > 5) {
+            equi = false;
+          }
+        });
+        if (equi) {
           distance_global.push({
             nom: j.nom,
             adresse: j.adresse,
             latlng: j.latlng,
+            specialite: j.specialite,
+            ouverture: j.ouverture,
             distance: distancetotal,
           });
+        }
+        distances = [];
         distancetotal = 0;
       });
       var restau_choisie = distance_global[0];
+
       distance_global.forEach((Element) => {
         if (Element.distance < restau_choisie.distance) {
           restau_choisie = Element;
         }
       });
-      console.log(restau_choisie);
+
       tab_pers.push(restau_choisie);
+      console.log(restau_choisie);
       res.send(tab_pers);
     })
     .catch(function (error) {

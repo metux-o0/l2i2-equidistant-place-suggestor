@@ -143,6 +143,7 @@ function Formulaire() {
   const [pin, setPin] = useState(1);
   const [nom, setNom] = useState('');
   const [adresse, setAdresse] = useState('');
+  const [activite, setActivite] = useState('');
   const [latlng, setLatlng] = useState({});
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
@@ -287,6 +288,16 @@ function Formulaire() {
           />
           <br />
           <br />
+          <div id="activite">
+            <label>Type d'activité :</label>
+            <br />
+            <label htmlFor="restaurant">Restaurant</label>
+            <input type="checkbox" id="act" value="restaurant" />
+            <label htmlFor="sport">Sport</label>
+            <input type="checkbox" id="act" value="sport" />
+            <label htmlFor="visite">Visite</label>
+            <input type="checkbox" id="act" value="visite" />
+          </div>
           <label id="case">Disponibilité :</label>
           <br />
           <br />
@@ -300,7 +311,7 @@ function Formulaire() {
           <br />
           <input
             type="checkbox"
-            id="case2"
+            id="case1"
             name={prochain[1]}
             value={prochain[1]}
           />
@@ -308,7 +319,7 @@ function Formulaire() {
           <br />
           <input
             type="checkbox"
-            id="case3"
+            id="case1"
             name={prochain[2]}
             value={prochain[2]}
           />
@@ -316,7 +327,7 @@ function Formulaire() {
           <br />
           <input
             type="checkbox"
-            id="case4"
+            id="case1"
             name={prochain[3]}
             value={prochain[3]}
           />
@@ -324,7 +335,7 @@ function Formulaire() {
           <br />
           <input
             type="checkbox"
-            id="case5"
+            id="case1"
             name={prochain[4]}
             value={prochain[4]}
           />
@@ -332,7 +343,7 @@ function Formulaire() {
           <br />
           <input
             type="checkbox"
-            id="case6"
+            id="case1"
             name={prochain[5]}
             value={prochain[5]}
           />
@@ -340,7 +351,7 @@ function Formulaire() {
           <br />
           <input
             type="checkbox"
-            id="case7"
+            id="case1"
             name={prochain[6]}
             value={prochain[6]}
           />
@@ -354,7 +365,7 @@ function Formulaire() {
               tab1.push(data);
               document.getElementById('name').value = '';
               document.getElementById('adr').value = '';
-              var semaine = document.querySelectorAll('input[type="checkbox"]');
+              var semaine = document.querySelectorAll('input[id="case1"]');
               const prochain1 = prochain_jour();
               const verification = (jour) => {
                 if (jour === 'lundi') {
@@ -389,6 +400,18 @@ function Formulaire() {
               for (var i = 0; i < semaine.length; i++) {
                 semaine[i].checked = false;
               }
+
+              var activites = document.querySelectorAll('input[id="act"]');
+              if (activites[0].checked === true) {
+                console.log('okk');
+                setActivite(activites[0].value);
+              } else if (activites[1].checked === true) {
+                setActivite(activites[1].value);
+              } else if (activites[2].checked === true) {
+                setActivite(activites[2].value);
+              }
+
+              console.log(activite);
               console.table(dispo);
               console.table(tab1);
               setDatesDispo(jourMax(dispo));
@@ -405,7 +428,7 @@ function Formulaire() {
               tab1.push(data);
               document.getElementById('name').value = '';
               document.getElementById('adr').value = '';
-              var semaine = document.querySelectorAll('input[type="checkbox"]');
+              var semaine = document.querySelectorAll('input[id="case1"]');
               const prochain1 = prochain_jour();
               const verification = (jour) => {
                 if (jour === 'lundi') {
