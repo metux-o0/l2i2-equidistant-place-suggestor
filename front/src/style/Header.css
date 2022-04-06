@@ -15,11 +15,11 @@ header h1 {
 }
 
 #img {
-  width: 50px;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: top;
-  max-width: 100%;
-  max-height: 100%;
+  width: 300px;
+  height: 150px;
+  text-align: center;
+}
+
+#img img {
+  height: 100%;
 }

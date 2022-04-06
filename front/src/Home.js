@@ -9,7 +9,6 @@ function Home() {
         <i>Blandine</i>
       </p>
       <br />
-      <img src="logo.jpg"></img>
     </div>
   );
 }
