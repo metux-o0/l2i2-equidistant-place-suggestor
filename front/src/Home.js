@@ -9,6 +9,22 @@ function Home() {
         <i>Blandine</i>
       </p>
       <br />
+      <p id="presentation">
+        L'application web a pour but de suggérer un lieu de sortie à
+        équidistance des membres d’un groupe d’utilisateurs afin de faciliter
+        les rendez-vous professionnels et personnels.
+        <br />
+        <br />
+        Les utilisateurs renseignent leur adresse et sélectionnent leurs
+        disponibilités (date et plage horaire) sur les sept prochains jours,
+        puis l’application leur propose un restaurant parmi ceux à proximité
+        ainsi qu’un créneau en commun.
+        <br />
+        <br />
+        L’application affichera par la suite le trajet le plus court pour chacun
+        des membres et également la distance à parcourir.
+      </p>
+      <br />
       <div>
         <button
           type="submit"

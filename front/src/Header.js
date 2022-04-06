@@ -4,12 +4,14 @@ function Header() {
   return (
     <div>
       <header>
-        <div id="img">
-          <img src="logo.jpg"></img>
+        <h1> Equi Meet </h1>
+        <div id="navi">
+          <Nav />
         </div>
-        <h1>Equi Meet </h1>
-        <Nav />
       </header>
+      <div id="img">
+        <img src="logo.jpg"></img>
+      </div>
     </div>
   );
 }

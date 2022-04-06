@@ -2,8 +2,7 @@ import Formulaire from "./Formulaire";
 import Nav from "./Navigateur";
 import Home from "./Home";
 import Header from "./Header";
-import Inscriprion from "./Inscription";
-
+import Inscription from "./Inscription";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./Contact";
 

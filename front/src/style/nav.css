@@ -8,6 +8,7 @@ nav ul {
   border-width: 5px;
   border-color: rgb(139, 83, 30);
   list-style-type: none;
+  display: inline-block;
 }
 nav li {
   font-size: 20px;
@@ -18,7 +19,7 @@ nav li {
 }
 #link {
   text-decoration: none;
-  color: rgb(139, 83, 30);
+  color: rgb(0, 0, 0);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }
