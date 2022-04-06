@@ -421,7 +421,7 @@ function Formulaire() {
               setPin(tab1.length);
             }}
           >
-            Envoyer
+            Valider
           </button>
           <button
             type="reset"
@@ -517,6 +517,22 @@ function Formulaire() {
             );
           })}
         </GoogleMap>
+      </div>
+      <div>
+        <button
+          type="submit"
+          value="Creneaur"
+          id="boutton"
+          onClick={() => {
+            {
+              datesDispo.map((res, index) => {
+                return <h4 id="dispo_jour">{datesDispo[index]}</h4>;
+              });
+            }
+          }}
+        >
+          Créneau suggérré
+        </button>
       </div>
       <h4 id="dispo">Date Disponibilité : </h4>
       {datesDispo.map((res, index) => {

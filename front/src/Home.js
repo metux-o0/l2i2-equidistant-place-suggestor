@@ -9,6 +9,18 @@ function Home() {
         <i>Blandine</i>
       </p>
       <br />
+      <div>
+        <button
+          type="submit"
+          value="Commencer"
+          id="boutton"
+          onClick={() => {
+            document.location.href = "./Formulaire";
+          }}
+        >
+          Commencer
+        </button>
+      </div>
     </div>
   );
 }

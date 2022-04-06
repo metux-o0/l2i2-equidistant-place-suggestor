@@ -39,6 +39,11 @@ div {
   margin: 20px;
 }
 
+input:active {
+  background-color: lightseagreen;
+  color: lightseagreen;
+}
+
 button {
   display: inline-block;
   background-color: #ffffff;
@@ -61,7 +66,8 @@ button:hover {
 }
 
 button[value="Envoyer"],
-button[value="Ajouter"] {
+button[value="Ajouter"],
+button[value="Commencer"] {
   text-align: center;
   margin: auto;
 }
