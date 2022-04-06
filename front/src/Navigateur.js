@@ -25,6 +25,16 @@ function Nav() {
             Contact
           </Link>
         </li>
+        <li>
+          <Link to="/inscription" activeclassname="nav_active" id="link">
+            Inscription
+          </Link>
+        </li>
+        <li>
+          <Link to="/connexion" activeclassname="nav_active" id="link">
+            Connexion
+          </Link>
+        </li>
       </ul>
     </nav>
   );
