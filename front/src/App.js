@@ -3,7 +3,7 @@ import Nav from "./Navigateur";
 import Home from "./Home";
 import Header from "./Header";
 
-import Inscriprion from "./Inscription";
+import Inscription from "./Inscription";
 import Connexion from "./Connexion";
 
 import { Route, Routes } from "react-router-dom";
