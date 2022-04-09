@@ -27,7 +27,7 @@ router.post("/formulaire", async (req, res) => {
 
       if (activite === "restaurant") {
         response.data.records.forEach((element) => {
-          if (element.fields.nom_de_l_etablissement != "LAVINIA") {
+          if (element.fields.nom_de_l_etablissement != "LAVINIA" && element.fields.nom_de_l_etablissement != "La Taverne") {
             tab_lieu.push({
               nom: element.fields.nom_de_l_etablissement,
               adresse: element.fields.adresse_de_l_etablissement,

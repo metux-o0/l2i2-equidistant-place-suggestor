@@ -508,14 +508,15 @@ function Formulaire() {
                     strokeWeight: 4,
                   },
                   icon: { scale: 3 },
-                  markerOptions: {
-                    icon: " ",
-                  },
+                  markerOptions: {},
                 }}
               />
             );
           })}
           {markers.map((res, index) => {
+            console.log("ok");
+            console.log(res);
+            console.log("ok");
             if (index === tab1.length) {
               return (
                 <div>
