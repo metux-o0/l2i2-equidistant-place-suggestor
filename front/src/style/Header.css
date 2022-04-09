@@ -27,6 +27,8 @@ header h1 {
 
 #img img {
   position: relative;
-  top: -175px;
+  top: -160px;
   margin-left: 50px;
+  margin-top: 10px;
+  height: 60%;
 }
