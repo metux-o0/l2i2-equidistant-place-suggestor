@@ -497,7 +497,6 @@ function Formulaire() {
           zoom={12}
         >
           {directionResponse.map((res, index) => {
-            console.log(res);
             return (
               <DirectionsRenderer
                 directions={res}
@@ -508,15 +507,14 @@ function Formulaire() {
                     strokeWeight: 4,
                   },
                   icon: { scale: 3 },
-                  markerOptions: {},
+                  markerOptions: {
+                    icon: " ",
+                  },
                 }}
               />
             );
           })}
           {markers.map((res, index) => {
-            console.log("ok");
-            console.log(res);
-            console.log("ok");
             if (index === tab1.length) {
               return (
                 <div>
