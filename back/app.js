@@ -5,6 +5,7 @@ var http = require("http");
 var io = require("socket.io")(http);
 const bodyParser = require("body-parser");
 const router = require("express").Router();
+const recoie = require("./nearby");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../front/public")));
+app.use("/", recoie);
 
-const recoie = require("./nearby");
 router.get("/inscription", (req, res, next) => {
   res.render("users/user-form", {
     errors: null,
@@ -75,6 +76,5 @@ router.get("/deconnexion", (req, res, next) => {
   req.logout();
   res.redirect("/");
 });
-app.use("/", recoie);
 
 module.exports = app;
