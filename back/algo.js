@@ -5,7 +5,8 @@ const axios = require("axios");
 router.post("/formulaire", async (req, res) => {
   var tab_pers = req.body.tab1;
   var dateChoisi = req.body.dateChoisie;
-  var activite = "restaurant";
+  var activite = req.body.activite;
+  console.log(activite);
   const tab_lieu = [];
 
   if (activite === "restaurant") {
@@ -27,7 +28,10 @@ router.post("/formulaire", async (req, res) => {
 
       if (activite === "restaurant") {
         response.data.records.forEach((element) => {
-          if (element.fields.nom_de_l_etablissement != "LAVINIA" && element.fields.nom_de_l_etablissement != "La Taverne") {
+          if (
+            element.fields.nom_de_l_etablissement != "LAVINIA" &&
+            element.fields.nom_de_l_etablissement != "La Taverne"
+          ) {
             tab_lieu.push({
               nom: element.fields.nom_de_l_etablissement,
               adresse: element.fields.adresse_de_l_etablissement,
@@ -179,7 +183,6 @@ router.post("/formulaire", async (req, res) => {
       });
 
       tab_pers.push(restau_choisie);
-      console.log(restau_choisie);
       res.send(tab_pers);
     })
     .catch(function (error) {

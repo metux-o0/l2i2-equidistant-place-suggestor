@@ -3,7 +3,7 @@ var path = require("path");
 var app = express();
 const bodyParser = require("body-parser");
 const router = require("express").Router();
-const recoie = require("./nearby");
+const recoie = require("./algo");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

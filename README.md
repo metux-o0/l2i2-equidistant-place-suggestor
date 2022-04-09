@@ -41,4 +41,21 @@ Restaurants : https://data.iledefrance.fr/explore/dataset/lile-de-france-fete-se
 
 # Environment Variable (ENV)
 
-REACT_APP_GOOGLE_API_KEY= YOUR_API_KEY
+You must have an Google API key
+
+Create a .env file and add : REACT_APP_GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+
+# Documentation
+
+Express : https://expressjs.com/fr/
+React : https://fr.reactjs.org
+Axios : https://axios-http.com/docs/api_intro
+CSS : https://developer.mozilla.org/fr/docs/Web/CSS
+HTML : https://developer.mozilla.org/fr/docs/Web/HTML
+JS : https://developer.mozilla.org/fr/docs/Web/JavaScript
+
+# Source
+
+Stackoverflow : https://stackoverflow.com
+Google Map API : https://youtu.be/iP3DnhCUIsE
+Git : https://youtu.be/BTyxX53OWmw

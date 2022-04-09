@@ -1,5 +1,5 @@
 import "./style/formulaire.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Autocomplete from "react-google-autocomplete";
 import Geocode from "react-geocode";
 import axios from "axios";
@@ -8,7 +8,6 @@ import {
   Marker,
   useJsApiLoader,
   DirectionsRenderer,
-  DirectionsService,
 } from "@react-google-maps/api";
 
 const containerStyle = {
@@ -19,7 +18,7 @@ const containerStyle = {
 const svgMarker = {
   path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
   fillColor: "blue",
-  fillOpacity: 0.6,
+  fillOpacity: 1,
   strokeWeight: 0,
   rotation: 0,
   scale: 2,
@@ -151,12 +150,11 @@ function jourMax(dispo) {
 }
 
 function Formulaire() {
-  const [pin, setPin] = useState(1);
+  const [pin, setPin] = useState(0);
   const [nom, setNom] = useState("");
   const [adresse, setAdresse] = useState("");
   const [activite, setActivite] = useState("");
   const [latlng, setLatlng] = useState({});
-  const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [datesDispo, setDatesDispo] = useState([]);
   const [resto, setResto] = useState([]);
@@ -203,7 +201,6 @@ function Formulaire() {
     delete result.routes[0].copyrights;
     directionRender.setDirections(result);
     directionRender.setPanel(document.getElementById("panel"));
-    console.log(directionResponse);
   }
 
   function convertToLatLng(adr) {
@@ -213,7 +210,6 @@ function Formulaire() {
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         setLatlng({ lat, lng });
-        console.log(lat, lng);
       },
       (error) => {
         console.error(error);
@@ -227,6 +223,7 @@ function Formulaire() {
         .post("http://localhost:3000/formulaire", {
           tab1,
           dateChoisie,
+          activite,
         })
         .then((response) => {
           setMarkers(response.data);
@@ -240,10 +237,9 @@ function Formulaire() {
               response.data[response.data.length - 1]
             );
           }
-          console.log(response.data);
         });
     } catch (e) {
-      alert(e);
+      console.log(e);
     }
   };
   useEffect(() => {
@@ -268,7 +264,7 @@ function Formulaire() {
   return isLoaded ? (
     <div id="page">
       <div id="formulaire">
-        <h2 id="personne">Personne {pin}</h2>
+        <h2 id="personne">Personne {pin + 1}</h2>
         <form>
           <label id="case" htmlform="name">
             Nom :
@@ -307,7 +303,7 @@ function Formulaire() {
             <label htmlFor="restaurant">Restaurant</label>
             <br />
             <input type="checkbox" id="act" value="sport" />
-            <label htmlFor="sport">Sport</label>
+            <label htmlFor="sport">Loisir</label>
             <br />
             <input type="checkbox" id="act" value="visite" />
             <label htmlFor="visite">Visite</label>
@@ -417,17 +413,15 @@ function Formulaire() {
 
               var activites = document.querySelectorAll('input[id="act"]');
               if (activites[0].checked === true) {
-                console.log("okk");
+                console.log(typeof activites[0].value);
                 setActivite(activites[0].value);
               } else if (activites[1].checked === true) {
+                console.log("okk");
                 setActivite(activites[1].value);
               } else if (activites[2].checked === true) {
+                console.log("okk");
                 setActivite(activites[2].value);
               }
-
-              console.log(activite);
-              console.table(dispo);
-              console.table(tab1);
               setDatesDispo(jourMax(dispo));
               setPin(tab1.length);
             }}
@@ -482,8 +476,6 @@ function Formulaire() {
               if (semaine[6].checked === true) {
                 verification(prochain1[6]);
               }
-              console.table(dispo);
-              console.table(tab1);
               setPin(tab1.length);
             }}
           >
@@ -543,18 +535,7 @@ function Formulaire() {
         </GoogleMap>
       </div>
       <div>
-        <button
-          type="submit"
-          value="Creneaur"
-          id="boutton"
-          onClick={() => {
-            {
-              datesDispo.map((res, index) => {
-                return <h4 id="dispo_jour">{datesDispo[index]}</h4>;
-              });
-            }
-          }}
-        >
+        <button type="submit" value="Creneaur" id="boutton" onClick={() => {}}>
           Créneau suggérré
         </button>
       </div>
