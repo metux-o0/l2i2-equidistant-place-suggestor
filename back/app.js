@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var app = express();
+var io = require("socket.io")(http);
 const bodyParser = require("body-parser");
 const router = require("express").Router();
 

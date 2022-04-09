@@ -35,6 +35,11 @@ function Nav() {
             Connexion
           </Link>
         </li>
+        <li>
+          <Link to="/chat" activeclassname="nav_active" id="link">
+            Chat
+          </Link>
+        </li>
       </ul>
     </nav>
   );
