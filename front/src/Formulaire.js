@@ -413,13 +413,10 @@ function Formulaire() {
 
               var activites = document.querySelectorAll('input[id="act"]');
               if (activites[0].checked === true) {
-                console.log(typeof activites[0].value);
                 setActivite(activites[0].value);
               } else if (activites[1].checked === true) {
-                console.log("okk");
                 setActivite(activites[1].value);
               } else if (activites[2].checked === true) {
-                console.log("okk");
                 setActivite(activites[2].value);
               }
               setDatesDispo(jourMax(dispo));
@@ -507,6 +504,7 @@ function Formulaire() {
             );
           })}
           {markers.map((res, index) => {
+            console.log(res);
             if (index === tab1.length) {
               return (
                 <div>
@@ -534,11 +532,6 @@ function Formulaire() {
           })}
         </GoogleMap>
       </div>
-      <div>
-        <button type="submit" value="Creneaur" id="boutton" onClick={() => {}}>
-          Créneau suggérré
-        </button>
-      </div>
       <h4 id="dispo">Date Disponibilité : </h4>
       {datesDispo.map((res, index) => {
         return <h4 id="dispo_jour">{datesDispo[index]}</h4>;
@@ -549,7 +542,6 @@ function Formulaire() {
         <hr></hr>
         <h4>{resto[1]}</h4>
         <h4>Spécialité : {resto[2]}</h4>
-        <h4>Ouverture : {resto[3]}</h4>
       </div>
       <br />
       <div id="panel"></div>

@@ -28,10 +28,7 @@ router.post("/formulaire", async (req, res) => {
 
       if (activite === "restaurant") {
         response.data.records.forEach((element) => {
-          if (
-            element.fields.nom_de_l_etablissement != "LAVINIA" &&
-            element.fields.nom_de_l_etablissement != "La Taverne"
-          ) {
+          if (element.fields.nom_de_l_etablissement != "LAVINIA") {
             tab_lieu.push({
               nom: element.fields.nom_de_l_etablissement,
               adresse: element.fields.adresse_de_l_etablissement,
@@ -40,9 +37,9 @@ router.post("/formulaire", async (req, res) => {
                 lng: element.geometry.coordinates[0],
               },
               specialite: element.fields.specialite_culinaire,
-              ouverture:
+              /*ouverture:
                 element.fields
-                  .horaires_d_ouverture_et_de_fermeture_de_l_etablissement,
+                  .horaires_d_ouverture_et_de_fermeture_de_l_etablissement,*/
             });
           }
         });
@@ -65,7 +62,7 @@ router.post("/formulaire", async (req, res) => {
               adresse: j.adresse,
               latlng: j.latlng,
               specialite: j.specialite,
-              ouverture: j.ouverture,
+              //ouverture: j.ouverture,
               distance: distancetotal,
             });
           }
@@ -75,12 +72,13 @@ router.post("/formulaire", async (req, res) => {
       } else if (activite === "sport") {
         response.data.records.forEach((element) => {
           tab_lieu.push({
-            nom: element.fields.titre,
+            nom: element.fields.ile_de_loisir,
             adresse: element.fields.departement,
             latlng: {
               lat: element.geometry.coordinates[1],
               lng: element.geometry.coordinates[0],
             },
+            specialite:element.fields.titre,
           });
         });
         tab_lieu.forEach((j) => {
@@ -101,6 +99,7 @@ router.post("/formulaire", async (req, res) => {
               nom: j.nom,
               adresse: j.adresse,
               latlng: j.latlng,
+              specialite: j.specialite,
               distance: distancetotal,
             });
           }
@@ -116,7 +115,7 @@ router.post("/formulaire", async (req, res) => {
               lat: element.geometry.coordinates[1],
               lng: element.geometry.coordinates[0],
             },
-            type: element.fields.typo_niv3,
+            specialite: element.fields.typo_niv3,
           });
         });
         tab_lieu.forEach((j) => {
@@ -137,7 +136,7 @@ router.post("/formulaire", async (req, res) => {
               nom: j.nom,
               adresse: j.adresse,
               latlng: j.latlng,
-              type: j.type,
+              specialite: j.specialite,
               distance: distancetotal,
             });
           }
@@ -182,6 +181,7 @@ router.post("/formulaire", async (req, res) => {
         }
       });
 
+      console.log(tab_pers);
       tab_pers.push(restau_choisie);
       res.send(tab_pers);
     })

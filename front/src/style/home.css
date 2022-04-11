@@ -15,12 +15,12 @@ p {
 
 #slogan {
   min-height: 60px;
+  margin: 0px 300px;
   /*padding: 10px 40px 50px 50px;*/
   font: 1em/150% sans-serif;
   font-size: 20px;
   position: relative;
   background-color: rgba(165, 131, 100, 0.8);
-  margin: 0px 300px 0px 300px;
 }
 
 #slogan::before {
