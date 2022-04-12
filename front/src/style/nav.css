@@ -6,7 +6,7 @@ nav ul {
   padding: 10px 5px 10px 5px;
   border-style: double;
   border-width: 5px;
-  border-color: rgb(139, 83, 30);
+  border-color: rgb(255, 255, 255);
   list-style-type: none;
   display: inline-block;
 }
@@ -19,11 +19,11 @@ nav li {
 }
 #link {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }
 
 #link:hover {
-  background: linear-gradient(rgb(255, 255, 255), rgb(161, 122, 86));
+  background: linear-gradient(rgb(255, 255, 255), rgb(200, 214, 223));
 }

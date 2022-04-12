@@ -74,3 +74,13 @@ distance_global.forEach((Element) => {
 });
 
 console.log(restau_choisie);
+
+var axios = require("axios");
+
+axios
+  .get(
+    "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyBLUExbctfSkizYyeJmkoidjB7RquqOsxo"
+  )
+  .then((res) => {
+    console.log(res.data.candidates[0].opening_hours);
+  });
