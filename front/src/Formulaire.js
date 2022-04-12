@@ -295,19 +295,22 @@ function Formulaire() {
             }}
           />
           <br />
-          <div onChange={(e)=>setActivite(e.target.value)}>
+          <div onChange={(e) => setActivite(e.target.value)}>
             <label id="activite">Type d'activité :</label>
-            <label>Restaurant
-              <input type="radio" name="activite" value="restaurant"/>
+            <label>
+              Restaurant
+              <input type="radio" name="activite" value="restaurant" />
             </label>
-            <label>Sport
-              <input type="radio" name="activite" value="sport"/>
+            <label>
+              Sport
+              <input type="radio" name="activite" value="sport" />
             </label>
-            <label>Tourisme
-              <input type="radio" name="activite" value="tourisme"/>
+            <label>
+              Tourisme
+              <input type="radio" name="activite" value="tourisme" />
             </label>
           </div>
-          <br/>
+          <br />
           <label id="case">Disponibilité :</label>
           <br />
           <input
@@ -533,7 +536,7 @@ function Formulaire() {
         <hr></hr>
         <h4>{resto[1]}</h4>
         <h4>Spécialité : {resto[2]}</h4>
-        <h4>Ouvert : {resto[4]}</h4>
+        <h4>Ouvert : {resto[3]}</h4>
       </div>
       <br />
       <div id="panel"></div>
