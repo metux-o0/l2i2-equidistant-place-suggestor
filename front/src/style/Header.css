@@ -14,7 +14,11 @@ header h1 {
   font-size: 50px;
   font-family: "Optima", sans-serif;
   text-align: center;
+<<<<<<< HEAD
   color: rgb(16, 12, 12);
+=======
+  color: rgb(2, 2, 2);
+>>>>>>> 454e40b8b413a630effbbb83ba34fe408429ab4c
 }
 
 #img {
