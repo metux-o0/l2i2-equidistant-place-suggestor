@@ -542,6 +542,7 @@ function Formulaire() {
         <hr></hr>
         <h4>{resto[1]}</h4>
         <h4>Spécialité : {resto[2]}</h4>
+        <h4>Ouvert : {resto[4]}</h4>
       </div>
       <br />
       <div id="panel"></div>
