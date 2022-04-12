@@ -10,17 +10,22 @@ h1 {
 
 p {
   background-attachment: scroll;
-  font-size: 17px;
+  font-size: 20px;
+  margin: 0px;
+  font: Georgia, "Times New Roman", Times, serif;
 }
 
 #slogan {
   min-height: 60px;
   margin: 0px 300px;
-  /*padding: 10px 40px 50px 50px;*/
+  padding: 10px 40px 40px;
   font: 1em/150% sans-serif;
   font-size: 20px;
   position: relative;
   background-color: rgba(165, 131, 100, 0.8);
+  border-radius: 5px;
+  top: -150px;
+  bottom: 0px;
 }
 
 #slogan::before {
@@ -49,6 +54,6 @@ i {
   text-align: right;
 }
 
-#presentation {
-  background-color: white;
+#Commencer {
+  width: 100px;
 }
