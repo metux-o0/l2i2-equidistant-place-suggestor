@@ -294,22 +294,20 @@ function Formulaire() {
             }}
           />
           <br />
-          <br />
-          <div id="activite">
-            <label>Type d'activité :</label>
-            <br />
-            <br />
-            <input type="checkbox" id="act" value="restaurant" />
-            <label htmlFor="restaurant">Restaurant</label>
-            <br />
-            <input type="checkbox" id="act" value="sport" />
-            <label htmlFor="sport">Loisir</label>
-            <br />
-            <input type="checkbox" id="act" value="visite" />
-            <label htmlFor="visite">Visite</label>
+          <div onChange={(e)=>setActivite(e.target.value)}>
+            <label id="activite">Type d'activité :</label>
+            <label>Restaurant
+              <input type="radio" name="activite" value="restaurant"/>
+            </label>
+            <label>Sport
+              <input type="radio" name="activite" value="sport"/>
+            </label>
+            <label>Tourisme
+              <input type="radio" name="activite" value="tourisme"/>
+            </label>
           </div>
+          <br/>
           <label id="case">Disponibilité :</label>
-          <br />
           <br />
           <input
             type="checkbox"
@@ -409,15 +407,6 @@ function Formulaire() {
               }
               for (var i = 0; i < semaine.length; i++) {
                 semaine[i].checked = false;
-              }
-
-              var activites = document.querySelectorAll('input[id="act"]');
-              if (activites[0].checked === true) {
-                setActivite(activites[0].value);
-              } else if (activites[1].checked === true) {
-                setActivite(activites[1].value);
-              } else if (activites[2].checked === true) {
-                setActivite(activites[2].value);
               }
               setDatesDispo(jourMax(dispo));
               setPin(tab1.length);

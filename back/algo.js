@@ -184,7 +184,7 @@ router.post("/formulaire", async (req, res) => {
         }
       });
 
-      axios
+      /*axios
         .get(
           "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&locationbias=point%40" +
             restau_choisie.latlng.lat +
@@ -202,9 +202,7 @@ router.post("/formulaire", async (req, res) => {
           console.log(
             JSON.stringify(res.data.candidates[0].opening_hours.open_now)
           );
-        });
-
-      console.log(restau_choisie);
+        });*/
       tab_pers.push(restau_choisie);
       res.send(tab_pers);
     })

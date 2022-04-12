@@ -1,7 +1,7 @@
 form,
 #boutton {
   margin: 20px 70px;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 div#formulaire {
@@ -157,8 +157,13 @@ form [id="case"] {
 #activite {
   font-size: 22px;
   font-weight: bold;
-  text-align: right;
-  display: flex;
+  float: left ;
+  margin-top: 17px;
+}
+
+input[name="activite"]{
+  margin: 28px 10px 5px 10px;
+
 }
 
 #h3 {
