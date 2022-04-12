@@ -36,7 +36,9 @@ router.post("/formulaire", async (req, res) => {
                 lng: element.geometry.coordinates[0],
               },
               specialite: element.fields.specialite_culinaire,
-              ouverture: element.fields.horaires_d_ouverture_et_de_fermeture_de_l_etablissement,
+              ouverture:
+                element.fields
+                  .horaires_d_ouverture_et_de_fermeture_de_l_etablissement,
             });
           }
         });
@@ -75,7 +77,7 @@ router.post("/formulaire", async (req, res) => {
               lat: element.geometry.coordinates[1],
               lng: element.geometry.coordinates[0],
             },
-            specialite:element.fields.titre,
+            specialite: element.fields.titre,
             ouverture: null,
           });
         });
@@ -145,54 +147,62 @@ router.post("/formulaire", async (req, res) => {
           distancetotal = 0;
         });
       }
-      
+
       function toRad(valeur) {
         return (valeur * Math.PI) / 180;
       }
       function calculdistance(rest, adr) {
         var x1 = rest.latlng.lat;
         var y1 = rest.latlng.lng;
-        
+
         var x2 = adr.latlng.lat;
         var y2 = adr.latlng.lng;
-        
+
         var R = 6371;
         var dLat = toRad(x2 - x1);
         var dLon = toRad(y2 - y1);
-        
+
         var lat1 = toRad(x1);
         var lat2 = toRad(x2);
-        
+
         var a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2) *
-        Math.cos(lat1) *
-        Math.cos(lat2);
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.sin(dLon / 2) *
+            Math.sin(dLon / 2) *
+            Math.cos(lat1) *
+            Math.cos(lat2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c;
         return d;
       }
-      
+
       var restau_choisie = distance_global[0];
-      
+
       distance_global.forEach((Element) => {
         if (Element.distance < restau_choisie.distance) {
           restau_choisie = Element;
         }
       });
-      
-      axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&locationbias=point%40'+restau_choisie.latlng.lat+'%2C'+restau_choisie.latlng.lng+'&fields=opening_hours%2Cgeometry&key=KEY')
-           .then(function (res) {
-             if(res.data.candidates[0].opening_hours.open_now===true){
-              restau_choisie.ouverture="Ouvert";
-             }
-             else{
-              restau_choisie.ouverture="Fermée";
-             }
-             console.log(JSON.stringify(res.data.candidates[0].geometry.location));
-             console.log(JSON.stringify(res.data.candidates[0].opening_hours.open_now));
-      })
+
+      axios
+        .get(
+          "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&locationbias=point%40" +
+            restau_choisie.latlng.lat +
+            "%2C" +
+            restau_choisie.latlng.lng +
+            "&fields=opening_hours%2Cgeometry&key=KEY"
+        )
+        .then(function (res) {
+          if (res.data.candidates[0].opening_hours.open_now === true) {
+            restau_choisie.ouverture = "Ouvert";
+          } else {
+            restau_choisie.ouverture = "Fermée";
+          }
+          console.log(JSON.stringify(res.data.candidates[0].geometry.location));
+          console.log(
+            JSON.stringify(res.data.candidates[0].opening_hours.open_now)
+          );
+        });
 
       console.log(restau_choisie);
       tab_pers.push(restau_choisie);
@@ -201,7 +211,6 @@ router.post("/formulaire", async (req, res) => {
     .catch(function (error) {
       console.log(error);
     });
-  });
-  
-  module.exports = router;
-  
+});
+
+module.exports = router;
