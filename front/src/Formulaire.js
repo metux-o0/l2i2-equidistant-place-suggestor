@@ -1,5 +1,5 @@
 import "./style/formulaire.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 import Geocode from "react-geocode";
 import axios from "axios";
@@ -171,6 +171,7 @@ function Formulaire() {
   ]);
   var dateChoisie;
   const data = { nom, adresse, latlng };
+  const scroll = useRef(null);
 
   const [directionResponse, setDirectionResponse] = useState([]);
   const [distance, setDistance] = useState([]);
@@ -410,6 +411,7 @@ function Formulaire() {
               }
               setDatesDispo(jourMax(dispo));
               setPin(tab1.length);
+              scroll.current.scrollIntoView();
             }}
           >
             Valider
@@ -527,7 +529,7 @@ function Formulaire() {
       })}
       <br />
       <div id="restaurant">
-        <h3>{resto[0]}</h3>
+        <h3 ref={scroll}>{resto[0]}</h3>
         <hr></hr>
         <h4>{resto[1]}</h4>
         <h4>Spécialité : {resto[2]}</h4>
