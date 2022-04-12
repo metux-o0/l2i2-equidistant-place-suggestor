@@ -181,6 +181,7 @@ router.post("/formulaire", async (req, res) => {
           restau_choisie = Element;
         }
       });
+
       
       axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&locationbias=point%40'+restau_choisie.latlng.lat+'%2C'+restau_choisie.latlng.lng+'&fields=opening_hours%2Cgeometry&key=KEY')
            .then(function (res) {
@@ -193,7 +194,7 @@ router.post("/formulaire", async (req, res) => {
              console.log(JSON.stringify(res.data.candidates[0].geometry.location));
              console.log(JSON.stringify(res.data.candidates[0].opening_hours.open_now));
       })
-
+      
       console.log(restau_choisie);
       tab_pers.push(restau_choisie);
       res.send(tab_pers);
