@@ -4,7 +4,7 @@ This is the project made by my students in the Descartes University of Paris. Th
 
 # Installation Instruction
 
-Install Node.js version 16.14.0 : https://nodejs.org/en/
+Install Node.js version 16.14.2 : https://nodejs.org/en/
 Install Nodemon : npm i nodemon
 
 Install back package : cd back
@@ -19,6 +19,12 @@ Go to the back folder : cd back
 npm run dev
 Go to the front folder : cd front
 npm start
+
+# Environment Variable (ENV)
+
+You must have an Google API key
+
+Create a .env file in the front folder and add : REACT_APP_GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
 
 # Background image
 
@@ -38,12 +44,6 @@ Loisirs : https://data.iledefrance.fr/explore/dataset/iles_de_loisirs_idf/table/
 Lieux touristiques : https://data.iledefrance.fr/explore/dataset/principaux-sites-touristiques-en-ile-de-france0/table/
 
 Restaurants : https://data.iledefrance.fr/explore/dataset/lile-de-france-fete-ses-restos-communes-partenaires/information/
-
-# Environment Variable (ENV)
-
-You must have an Google API key
-
-Create a .env file and add : REACT_APP_GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
 
 # Documentation
 
