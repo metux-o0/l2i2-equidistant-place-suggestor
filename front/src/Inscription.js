@@ -54,7 +54,7 @@ function Inscritption() {
         <h2>Inscription</h2>
         <form>
           <label id="case" htmlform="name">
-            Nom:
+            Nom :
           </label>
           <input
             type="text"
@@ -65,7 +65,7 @@ function Inscritption() {
           />
           <br />
           <label id="case" htmlform="adr">
-            Adresse :
+            Adresse postale :
           </label>
           <Autocomplete
             id="adr"
@@ -82,7 +82,7 @@ function Inscritption() {
           />
           <br />
           <label id="case" htmlform="email">
-            Adresse mail:
+            Adresse mail :
           </label>
           <input
             type="text"
@@ -93,7 +93,7 @@ function Inscritption() {
           />
           <br />
           <label id="case" htmlform="email">
-            Mot de passe:
+            Mot de passe :
           </label>
           <input
             type="text"
@@ -103,7 +103,9 @@ function Inscritption() {
             }}
           />
           <br />
-          <button type="submit" value="Envoyer"></button>
+          <button type="submit" value="Envoyer">
+            S'inscrire
+          </button>
         </form>
       </div>
     </div>

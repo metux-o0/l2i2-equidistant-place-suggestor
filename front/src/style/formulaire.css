@@ -1,12 +1,13 @@
 form,
 #boutton {
   margin: 20px 70px;
+  margin-top: 20px;
 }
 
 div#formulaire {
   display: block;
   width: 700px;
-  height: 500px;
+  height: 550px;
   text-align: left;
   color: rgb(99, 71, 47);
   background-color: rgba(165, 131, 100, 0.8);
@@ -17,6 +18,7 @@ div#formulaire {
   margin: 10px 350px 10px;
   font-size: 24px;
   block-size: 650px;
+  padding-bottom: 20px;
 }
 div#carte {
   margin: 100px 0px 0px 305px;
@@ -139,12 +141,12 @@ form [id="case"] {
 }
 
 #dispo {
-  margin: 50px 780px 0px 10px;
+  margin: 50px 780px 0px 90px;
 }
 #dispo_jour {
   height: 0px;
   padding: 10px 10px;
-  margin: 0px 780px 0px 1px;
+  margin: 0px 780px 0px 250px;
   display: flex;
 }
 
@@ -155,8 +157,12 @@ form [id="case"] {
 #activite {
   font-size: 22px;
   font-weight: bold;
-  text-align: right;
-  display: flex;
+  float: left ;
+  margin-top: 17px;
+}
+
+input[name="activite"]{
+  margin: 28px 10px 5px 10px;
 }
 
 #h3 {

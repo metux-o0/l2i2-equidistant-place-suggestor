@@ -16,16 +16,6 @@ function Nav() {
           </Link>
         </li>
         <li>
-          <Link
-            exact="true"
-            to="/contact"
-            activeclassname="nav_active"
-            id="link"
-          >
-            Contact
-          </Link>
-        </li>
-        <li>
           <Link to="/inscription" activeclassname="nav_active" id="link">
             Inscription
           </Link>

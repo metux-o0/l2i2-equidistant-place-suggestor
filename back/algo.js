@@ -5,7 +5,8 @@ const axios = require("axios");
 router.post("/formulaire", async (req, res) => {
   var tab_pers = req.body.tab1;
   var dateChoisi = req.body.dateChoisie;
-  var activite = "restaurant";
+  var activite = req.body.activite;
+  console.log(activite);
   const tab_lieu = [];
 
   if (activite === "restaurant") {
@@ -24,10 +25,9 @@ router.post("/formulaire", async (req, res) => {
       var distance_global = [];
       var distancetotal = 0;
       var distances = [];
-
       if (activite === "restaurant") {
         response.data.records.forEach((element) => {
-          if (element.fields.nom_de_l_etablissement != "LAVINIA" && element.fields.nom_de_l_etablissement != "La Taverne") {
+          if (element.fields.nom_de_l_etablissement != "LAVINIA") {
             tab_lieu.push({
               nom: element.fields.nom_de_l_etablissement,
               adresse: element.fields.adresse_de_l_etablissement,
@@ -71,12 +71,14 @@ router.post("/formulaire", async (req, res) => {
       } else if (activite === "sport") {
         response.data.records.forEach((element) => {
           tab_lieu.push({
-            nom: element.fields.titre,
+            nom: element.fields.ile_de_loisir,
             adresse: element.fields.departement,
             latlng: {
               lat: element.geometry.coordinates[1],
               lng: element.geometry.coordinates[0],
             },
+            specialite: element.fields.titre,
+            ouverture: null,
           });
         });
         tab_lieu.forEach((j) => {
@@ -97,6 +99,8 @@ router.post("/formulaire", async (req, res) => {
               nom: j.nom,
               adresse: j.adresse,
               latlng: j.latlng,
+              specialite: j.specialite,
+              ouverture: j.ouverture,
               distance: distancetotal,
             });
           }
@@ -112,7 +116,8 @@ router.post("/formulaire", async (req, res) => {
               lat: element.geometry.coordinates[1],
               lng: element.geometry.coordinates[0],
             },
-            type: element.fields.typo_niv3,
+            specialite: element.fields.typo_niv3,
+            ouverture: null,
           });
         });
         tab_lieu.forEach((j) => {
@@ -133,7 +138,8 @@ router.post("/formulaire", async (req, res) => {
               nom: j.nom,
               adresse: j.adresse,
               latlng: j.latlng,
-              type: j.type,
+              specialite: j.specialite,
+              ouverture: j.ouverture,
               distance: distancetotal,
             });
           }
@@ -178,8 +184,26 @@ router.post("/formulaire", async (req, res) => {
         }
       });
 
+      /*axios
+        .get(
+          "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&locationbias=point%40" +
+            restau_choisie.latlng.lat +
+            "%2C" +
+            restau_choisie.latlng.lng +
+            "&fields=opening_hours%2Cgeometry&key=KEY"
+        )
+        .then(function (res) {
+          if (res.data.candidates[0].opening_hours.open_now === true) {
+            restau_choisie.ouverture = "Ouvert";
+          } else {
+            restau_choisie.ouverture = "Fermée";
+          }
+          console.log(JSON.stringify(res.data.candidates[0].geometry.location));
+          console.log(
+            JSON.stringify(res.data.candidates[0].opening_hours.open_now)
+          );
+        });*/
       tab_pers.push(restau_choisie);
-      console.log(restau_choisie);
       res.send(tab_pers);
     })
     .catch(function (error) {

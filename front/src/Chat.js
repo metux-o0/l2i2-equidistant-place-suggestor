@@ -1,8 +1,6 @@
 import "./style/chat.css";
 import React from "react";
 
-import "./style/Header.css";
-import Nav from "./Navigateur";
 function Chat() {
   return (
     <div>

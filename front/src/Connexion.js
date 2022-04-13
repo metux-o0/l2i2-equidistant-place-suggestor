@@ -25,7 +25,7 @@ const Connexion = () => {
   return (
     <div id="page">
       <div id="formulaire">
-        <h2>Inscription</h2>
+        <h2>Connexion</h2>
         <form>
           <label id="case" htmlform="email">
             Adresse mail:
@@ -49,7 +49,9 @@ const Connexion = () => {
             }}
           />
           <br />
-          <button type="submit" value="Envoyer"></button>
+          <button type="submit" value="Envoyer">
+            Se connecter
+          </button>
         </form>
       </div>
     </div>

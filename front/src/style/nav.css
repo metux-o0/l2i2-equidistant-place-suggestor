@@ -19,11 +19,11 @@ nav li {
 }
 #link {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: rgb(5, 3, 3);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }
 
 #link:hover {
-  background: linear-gradient(rgb(255, 255, 255), rgb(161, 122, 86));
+  background: linear-gradient(rgb(255, 255, 255), rgb(200, 214, 223));
 }

@@ -14,7 +14,7 @@ header h1 {
   font-size: 50px;
   font-family: "Optima", sans-serif;
   text-align: center;
-  color: #000;
+  color: rgb(2, 2, 2);
 }
 
 #img {
@@ -27,8 +27,9 @@ header h1 {
 
 #img img {
   position: relative;
-  top: -160px;
-  margin-left: 50px;
+  top: -200px;
+  right: -25px;
+  margin-left: 5px;
   margin-top: 10px;
-  height: 60%;
+  height: 70%;
 }
