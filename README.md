@@ -28,6 +28,8 @@ You must have an Google API key
 
 Create a .env file in the front folder and add : REACT_APP_GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
 
+Add your Google API key : substitute "KEY" at line 18 in index.html with your Google API key
+
 # Background image
 
 https://www.pinterest.fr/pin/create/button/?media=https://img.freepik.com/vecteurs-libre/fond-papier-grunge_1048-10026.jpg&size=626&ext=jpg&url=https%3A%2F%2Ffr.freepik.com%2Fvecteurs-libre%2Ffond-papier-grunge_4227764.htm&description=Fond%20de%20papier%20grunge%20%7C%20Free%20Vector%20%23Freepik%20%23freevector%20%23fond%20%23aquarelle%20%23abstrait%20%23texture

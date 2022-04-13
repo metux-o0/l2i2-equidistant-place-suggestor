@@ -7,6 +7,7 @@ function Home() {
       <p id="slogan">
         Profitons de notre jour de repos, qui ne tombe pas à l'eau
       </p>
+      <img src="restau.jpg" />
       <p id="presentation">
         L'application web a pour but de suggérer un lieu de sortie à
         équidistance des membres d’un groupe d’utilisateurs afin de faciliter
