@@ -1,11 +1,19 @@
 import "./style/chat.css";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import socketIOClient from "socket.io-client";
+
+const url = "http://localhost:3000/chat";
 
 function Chat() {
   const [message, setMessage] = useState("");
 
-  axios.get("http://localhost:3000/chat").then((res) => {});
+  useEffect(() => {
+    const socket = socketIOClient(url);
+    socket.on("FromAPI", (data) => {
+      setMessage(data);
+    });
+    return () => socket.disconnect();
+  }, []);
 
   return (
     <div>
