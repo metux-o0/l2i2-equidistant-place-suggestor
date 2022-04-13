@@ -5,11 +5,8 @@ import Inscription from "./Inscription";
 import Connexion from "./Connexion";
 
 import { Route, Routes } from "react-router-dom";
-<<<<<<< HEAD
 import Contact from "./Contact";
 import Chat from "./Chat";
-=======
->>>>>>> b3374433300cf6f30e03bd7404c297f632765c08
 
 function App() {
   return (
