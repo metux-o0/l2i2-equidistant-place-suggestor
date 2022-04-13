@@ -15,6 +15,8 @@ npm i
 
 # Launch the App
 
+Prerequisite : Project clone
+
 Go to the back folder : cd back
 npm run dev
 Go to the front folder : cd front

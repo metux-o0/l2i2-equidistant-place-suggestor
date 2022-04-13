@@ -24,7 +24,7 @@ p {
   position: relative;
   background-color: rgba(165, 131, 100, 0.8);
   border-radius: 5px;
-  top: -150px;
+  top: -100px;
   bottom: 0px;
 }
 
@@ -52,8 +52,4 @@ i {
   margin-top: 10px;
   font-style: italic;
   text-align: right;
-}
-
-#Commencer {
-  width: 100px;
 }

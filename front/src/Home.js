@@ -6,7 +6,6 @@ function Home() {
       <br />
       <p id="slogan">
         Profitons de notre jour de repos, qui ne tombe pas à l'eau
-        <i>Blandine</i>
       </p>
       <p id="presentation">
         L'application web a pour but de suggérer un lieu de sortie à
@@ -15,9 +14,9 @@ function Home() {
         <br />
         <br />
         Les utilisateurs renseignent leur adresse et sélectionnent leurs
-        disponibilités (date et plage horaire) sur les sept prochains jours,
-        puis l’application leur propose un restaurant parmi ceux à proximité
-        ainsi qu’un créneau en commun.
+        disponibilités sur les sept prochains jours, puis l’application leur
+        propose un restaurant parmi ceux à proximité ainsi qu’un créneau en
+        commun.
         <br />
         <br />
         L’application affichera par la suite le trajet le plus court pour chacun
