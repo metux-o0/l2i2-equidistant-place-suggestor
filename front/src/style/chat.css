@@ -1,0 +1,8 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font: 13px Helvetica, Arial; }
+        .zone_saisie { border:rgb(110, 69, 35); padding: 3px; position: fixed; bottom: 5%; width: 50%; margin-left: 25%}
+        .zone_saisie input { border: 1; padding: 10px; width: 90%; margin-right: .5%; }
+        .zone_saisie button { width: 9%; background: rgb(49, 30, 8); border: none; padding: 10px; }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(odd) { background: #eee; }
